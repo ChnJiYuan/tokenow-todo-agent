@@ -68,6 +68,8 @@ export function createModelPlanner(completion: Completion = complete): Planner {
         ...messages,
       ],
       response_format: { type: "json_object" },
+      // DeepSeek 默认开启思考；短任务计划显式关闭，避免占用输出预算和增加等待。
+      reasoning_effort: "none",
       temperature: 0,
       max_tokens: 800,
     });

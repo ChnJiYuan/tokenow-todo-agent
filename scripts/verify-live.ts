@@ -8,6 +8,7 @@ import { join } from "node:path";
 import { setTimeout } from "node:timers/promises";
 import type { ChatMessage } from "../shared/chat.ts";
 import { taskListSchema } from "../shared/tasks.ts";
+import { model } from "../server/model.ts";
 
 if (!process.env.DEEPSEEK_API_KEY?.trim()) {
   console.error(
@@ -15,6 +16,8 @@ if (!process.env.DEEPSEEK_API_KEY?.trim()) {
   );
   process.exit(1);
 }
+
+console.log(`真实模型验收配置：${model}，reasoning_effort=none（非思考模式）。`);
 
 const directory = await mkdtemp(join(tmpdir(), "xiaoming-live-"));
 const filename = join(directory, "tasks.json");

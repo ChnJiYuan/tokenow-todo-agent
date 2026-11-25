@@ -18,6 +18,12 @@
 
 没有新增依赖。`shared/tasks.ts` 提取了原有 API 的标题和更新校验，也用于智能体参数校验，避免聊天和 REST 接口接受不同的标题范围。JSON 存储的同步读写、临时文件替换和未知扩展字段保留行为保持不变。
 
+## 模型与运行模式
+
+默认使用 `deepseek-flash`，可通过 `DEEPSEEK_MODEL` 覆盖型号。每次规划请求显式传入 `reasoning_effort: "none"` 关闭思考模式，适配本题的短 JSON 任务计划。DeepSeek [API 参数说明](https://api-docs.deepseek.com/api/create-chat-completion/)规定省略相关参数时默认开启思考，`temperature: 0` 不能替代这个开关。
+
+该选择是先降低不必要的推理开销，真实语义准确率与延迟仍需联调验证。`server/model.test.ts` 在独立进程中加载配置，经过真实 SDK 并拦截 HTTP 传输，检查默认 Flash、自定义模型、非思考参数和 JSON Output 的实际请求体；测试不使用真实密钥或网络。
+
 ## 匹配与澄清规则
 
 - 零候选：说明未找到，不创建、不修改、不删除。

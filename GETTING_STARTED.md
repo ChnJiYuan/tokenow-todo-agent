@@ -21,6 +21,8 @@ npm run dev
 2. 在 `.env` 中填写 [DeepSeek 开放平台](https://platform.deepseek.com/) 的 API Key。可通过 `DEEPSEEK_MODEL` 更换模型。
 3. 重启开发服务。在服务端使用 [server/model.ts](server/model.ts) 导出的 `getModelClient()` 获取客户端，使用 `model` 读取配置的模型名称。只有发起模型请求才会产生调用费用。
 
+默认使用 `deepseek-flash`。规划请求显式设置 `reasoning_effort: "none"` 关闭思考模式，同时保留 JSON Output、800 token 输出上限和20秒请求超时。仅设置 `temperature: 0` 不会关闭思考；通过 `DEEPSEEK_MODEL` 更换模型时，仍沿用非思考模式。
+
 ## 代码入口
 
 | 文件                                         | 用途                                       |
