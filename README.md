@@ -31,7 +31,7 @@ npm run verify:live
 
 自动测试不调用模型，全部使用临时任务文件。`verify:live` 启动独立生产服务，检查官方六步对话、磁盘状态、刷新后的空历史、真实进程重启、洗衣服场景及最近任务指代，并自动清理测试数据。
 
-详细配置见 [本地开发指南](GETTING_STARTED.md)。实现讲解和已知限制见 [工程说明](docs/ENGINEERING.md)，实际执行结果见 [验证记录](docs/VERIFICATION.md)。`SUBMIT.md` 保留模板原文，由应聘人本人撰写。
+详细配置见 [本地开发指南](GETTING_STARTED.md)。实现讲解和已知限制见 [工程说明](docs/ENGINEERING.md)，实际执行结果见 [验证记录](docs/VERIFICATION.md)。[提交说明](SUBMIT.md) 使用 AI 辅助整理，提交前由候选人复核。
 
 ## 原题说明
 

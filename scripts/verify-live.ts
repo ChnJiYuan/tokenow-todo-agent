@@ -129,7 +129,7 @@ try {
   await chat("刚才那条完成了", /已完成：读书/);
   await state([...remaining, { title: "洗衣服", done: true }, { title: "读书", done: true }]);
   console.log(
-    "真实模型验收通过：官方六步、空历史、进程重启、洗衣服语义变化和最近任务指代。共12次模型调用。",
+    "真实模型验收通过：官方六步、空历史、进程重启、洗衣服语义变化和最近任务指代。共12轮对话，每轮最多2次规划请求。",
   );
 } finally {
   await stop();

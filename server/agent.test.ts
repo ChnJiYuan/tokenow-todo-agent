@@ -55,7 +55,10 @@ test("官方六步连续对话：HTTP → JSON模型边界mock → 执行器 →
               ? { action: "delete", taskIds: [input.tasks[1].id] }
               : listPlan;
     return createModelPlanner(async (request) => {
-      assert.deepEqual(request.messages.slice(2), input.messages);
+      assert.deepEqual(
+        request.messages.filter((message) => message.role !== "system"),
+        input.messages,
+      );
       assert.deepEqual(request.response_format, { type: "json_object" });
       return { content: JSON.stringify(plan), finishReason: "stop" };
     })(input);
@@ -198,7 +201,7 @@ test("不同名称的多候选也不猜测，澄清不执行写入", async (t) =
   );
 });
 
-test("无效模型计划、无效标题和多工具输出被拒绝，每轮只调用一次模型", async (t) => {
+test("无效业务计划、无效标题和多工具输出被拒绝，不重试业务校验", async (t) => {
   const { tasks } = await taskFixture(t);
   for (const output of [
     null,
@@ -247,18 +250,38 @@ test("模型错误不写入，缺密钥和请求失败给出可理解反馈", as
 test("规划超时终止，迟到结果也不执行写入", async (t) => {
   const { tasks } = await taskFixture(t);
   let finish!: (value: unknown) => void;
+  let requestSignal: AbortSignal | undefined;
   const reply = createAgent({
     tasks,
     planningTimeoutMs: 5,
-    planner: () =>
-      new Promise((resolve) => {
+    planner: ({ signal }) => {
+      requestSignal = signal;
+      return new Promise((resolve) => {
         finish = resolve;
-      }),
+      });
+    },
   });
   assert.match(await reply(user("帮我记一下洗衣服")), /超时/);
+  assert.equal(requestSignal?.aborted, true);
   finish({ action: "create", title: "洗衣服" });
   await new Promise((resolve) => setImmediate(resolve));
   assert.deepEqual(tasks.list(), []);
+});
+
+test("空白模型计划恢复后仅写一次，HTTP重发也复用同一结果", async (t) => {
+  const { filename } = await taskFixture(t);
+  let calls = 0;
+  const planner = createModelPlanner(async () => ({
+    content: calls++ === 0 ? "  \n " : '{"action":"create","title":"买牛奶"}',
+    finishReason: "stop",
+  }));
+  const app = await httpFixture(t, filename, planner);
+  const key = randomUUID();
+  const first = await (await app.chat(user("帮我记一下买牛奶"), key)).json();
+  assert.match(first.reply, /已添加待办：买牛奶/);
+  assert.deepEqual(await (await app.chat(user("帮我记一下买牛奶"), key)).json(), first);
+  assert.equal(calls, 2);
+  assert.equal(app.tasks.list().length, 1);
 });
 
 test("损坏的存储文件不会被覆盖，模型不被调用", async (t) => {

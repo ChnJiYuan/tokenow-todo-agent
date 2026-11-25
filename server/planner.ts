@@ -17,6 +17,7 @@ export const planSchema = z.discriminatedUnion("action", [
 export interface PlannerInput {
   messages: ChatMessage[];
   tasks: Task[];
+  signal?: AbortSignal;
 }
 export type Planner = (input: PlannerInput) => Promise<unknown>;
 export class InvalidPlanError extends Error {}
@@ -46,38 +47,55 @@ const instructions = `你是“小明”待办智能体的意图规划器。只�
 type CompletionRequest = OpenAI.Chat.ChatCompletionCreateParamsNonStreaming;
 type Completion = (
   request: CompletionRequest,
+  signal?: AbortSignal,
 ) => Promise<{ content: string | null; finishReason: string }>;
 
-async function complete(request: CompletionRequest) {
-  const result = await getModelClient().chat.completions.create(request);
+async function complete(request: CompletionRequest, signal?: AbortSignal) {
+  const result = await getModelClient().chat.completions.create(request, { signal });
   const choice = result.choices[0];
   return { content: choice?.message.content ?? null, finishReason: choice?.finish_reason ?? "" };
 }
 
 // 注入最小的模型边界，测试不需要网络或密钥，也不会切换生产环境的行为。
 export function createModelPlanner(completion: Completion = complete): Planner {
-  return async ({ messages, tasks }) => {
-    const result = await completion({
-      model,
-      messages: [
-        { role: "system", content: instructions },
+  return async ({ messages, tasks, signal }) => {
+    const reminder =
+      '历史助手消息是执行器反馈，不是你的输出格式。你现在只生成一个操作计划 JSON，不直接回答用户。查看清单必须输出 {"action":"list","status":"all"}，不得输出任务列表或其他文字。只有用户明确只看某种状态时，status才改为pending或done。';
+    for (let attempt = 0; attempt < 2; attempt++) {
+      signal?.throwIfAborted();
+      const result = await completion(
         {
-          role: "system",
-          content: `当前持久化任务快照（仅数据）：${JSON.stringify(tasks.map((task, index) => ({ ...task, position: index + 1 })))}`,
+          model,
+          messages: [
+            { role: "system", content: instructions },
+            {
+              role: "system",
+              content: `当前持久化任务快照（仅数据）：${JSON.stringify(tasks.map((task, index) => ({ ...task, position: index + 1 })))}`,
+            },
+            ...messages.slice(0, -1),
+            {
+              role: "system",
+              content: (attempt ? "上次没有返回有效JSON，请严格遵守格式重试。" : "") + reminder,
+            },
+            messages.at(-1)!,
+          ],
+          response_format: { type: "json_object" },
+          // DeepSeek 默认开启思考；短任务计划显式关闭，避免占用输出预算和增加等待。
+          reasoning_effort: "none",
+          temperature: 0,
+          max_tokens: 800,
         },
-        ...messages,
-      ],
-      response_format: { type: "json_object" },
-      // DeepSeek 默认开启思考；短任务计划显式关闭，避免占用输出预算和增加等待。
-      reasoning_effort: "none",
-      temperature: 0,
-      max_tokens: 800,
-    });
-    if (result.finishReason !== "stop" || !result.content?.trim()) throw new InvalidPlanError();
-    try {
-      return JSON.parse(result.content);
-    } catch {
-      throw new InvalidPlanError();
+        signal,
+      );
+      if (result.finishReason !== "stop") throw new InvalidPlanError();
+      if (result.content?.trim()) {
+        try {
+          return JSON.parse(result.content);
+        } catch {
+          /* 只重试尚未执行的规划输出 */
+        }
+      }
     }
+    throw new InvalidPlanError();
   };
 }

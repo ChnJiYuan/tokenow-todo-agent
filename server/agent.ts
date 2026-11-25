@@ -87,13 +87,17 @@ export function createAgent({
     }
 
     let plan;
+    const controller = new AbortController();
     let timer: ReturnType<typeof setTimeout> | undefined;
     try {
-      // 每轮最多一次规划；超时后即使模型稍后返回，也没有执行写入的机会。
+      // 每轮一个规划阶段（空白/非法JSON最多重试一次）；总超时后取消请求且不能写入。
       const output = await Promise.race([
-        planner({ messages, tasks: snapshot }),
+        planner({ messages, tasks: snapshot, signal: controller.signal }),
         new Promise<never>((_resolve, reject) => {
-          timer = setTimeout(() => reject(new PlanningTimeoutError()), planningTimeoutMs);
+          timer = setTimeout(() => {
+            controller.abort();
+            reject(new PlanningTimeoutError());
+          }, planningTimeoutMs);
         }),
       ]);
       const parsed = planSchema.safeParse(output);
@@ -114,6 +118,7 @@ export function createAgent({
       return "暂时无法连接模型，本轮没有修改任务。请检查网络、模型配置和账户额度后重试。";
     } finally {
       clearTimeout(timer);
+      controller.abort();
     }
 
     try {
