@@ -1,0 +1,369 @@
+{
+  "description": "历史运行摘要与失败场景原始输入、回复及状态。完整历史日志保留在本地忽略目录data/live-dialogue-history；最终全量报告另见live-dialogues-latest.json。",
+  "runs": [
+    {
+      "sourceFile": "live-dialogues-baseline.json",
+      "startedAt": "2026-11-25T15:34:23.333Z",
+      "finishedAt": "2026-11-25T15:35:04.619Z",
+      "model": "deepseek-flash",
+      "summary": {
+        "scenariosPlanned": 38,
+        "scenariosExecuted": 38,
+        "passed": 38,
+        "failed": 0,
+        "turnsExecuted": 46,
+        "skippedTurns": 0,
+        "wrongMutations": 0,
+        "modelErrors": 0
+      },
+      "failures": []
+    },
+    {
+      "sourceFile": "live-dialogues-first-regression.json",
+      "startedAt": "2026-11-25T15:38:56.594Z",
+      "finishedAt": "2026-11-25T15:39:59.187Z",
+      "model": "deepseek-flash",
+      "summary": {
+        "scenariosPlanned": 54,
+        "scenariosExecuted": 54,
+        "scenariosCompleted": 54,
+        "passed": 52,
+        "failed": 2,
+        "turnsExecuted": 65,
+        "skippedTurns": 0,
+        "wrongMutations": 0,
+        "modelErrors": 1
+      },
+      "failures": [
+        {
+          "id": "recent-pronoun",
+          "category": "模糊与指代",
+          "rationale": "唯一最近创建的任务应能通过历史定位，且不重复创建。",
+          "repeat": 1,
+          "turnsPlanned": 2,
+          "passed": false,
+          "turns": [
+            {
+              "input": "帮我记一下洗衣服",
+              "reply": "已添加待办：洗衣服（未完成，#14c7b93f）。",
+              "kind": "created",
+              "expectedKinds": ["created"],
+              "before": [
+                {
+                  "key": "milk",
+                  "title": "买牛奶",
+                  "done": false
+                },
+                {
+                  "key": "courier",
+                  "title": "取快递",
+                  "done": false
+                }
+              ],
+              "expected": [
+                {
+                  "key": "milk",
+                  "title": "买牛奶",
+                  "done": false
+                },
+                {
+                  "key": "courier",
+                  "title": "取快递",
+                  "done": false
+                },
+                {
+                  "key": "laundry",
+                  "title": "洗衣服",
+                  "done": false
+                }
+              ],
+              "actual": [
+                {
+                  "key": "milk",
+                  "title": "买牛奶",
+                  "done": false
+                },
+                {
+                  "key": "courier",
+                  "title": "取快递",
+                  "done": false
+                },
+                {
+                  "key": "laundry",
+                  "title": "洗衣服",
+                  "done": false
+                }
+              ],
+              "durationMs": 768,
+              "passed": true,
+              "statePassed": true,
+              "wrongMutation": false
+            },
+            {
+              "input": "刚刚那件事搞定了",
+              "reply": "你指的是哪件事？",
+              "kind": "clarify",
+              "expectedKinds": ["completed"],
+              "before": [
+                {
+                  "key": "milk",
+                  "title": "买牛奶",
+                  "done": false
+                },
+                {
+                  "key": "courier",
+                  "title": "取快递",
+                  "done": false
+                },
+                {
+                  "key": "laundry",
+                  "title": "洗衣服",
+                  "done": false
+                }
+              ],
+              "expected": [
+                {
+                  "key": "milk",
+                  "title": "买牛奶",
+                  "done": false
+                },
+                {
+                  "key": "courier",
+                  "title": "取快递",
+                  "done": false
+                },
+                {
+                  "key": "laundry",
+                  "title": "洗衣服",
+                  "done": true
+                }
+              ],
+              "actual": [
+                {
+                  "key": "milk",
+                  "title": "买牛奶",
+                  "done": false
+                },
+                {
+                  "key": "courier",
+                  "title": "取快递",
+                  "done": false
+                },
+                {
+                  "key": "laundry",
+                  "title": "洗衣服",
+                  "done": false
+                }
+              ],
+              "durationMs": 639,
+              "passed": false,
+              "statePassed": false,
+              "wrongMutation": false,
+              "failure": "完成状态不符\n\nfalse !== true\n"
+            }
+          ],
+          "skippedTurns": 0
+        },
+        {
+          "id": "overlong-title",
+          "category": "参数与能力边界",
+          "rationale": "超长标题不能擅自缩短后写入。",
+          "repeat": 1,
+          "turnsPlanned": 1,
+          "passed": false,
+          "turns": [
+            {
+              "input": "帮我记一下字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字",
+              "reply": "模型返回的操作格式无效，本轮没有修改任务。请换一种说法重试。",
+              "kind": "error",
+              "expectedKinds": ["clarify", "help"],
+              "before": [],
+              "expected": [],
+              "actual": [],
+              "durationMs": 1247,
+              "passed": false,
+              "statePassed": true,
+              "wrongMutation": false,
+              "failure": "回复类型error不属于预期clarify/help"
+            }
+          ],
+          "skippedTurns": 0
+        }
+      ]
+    },
+    {
+      "sourceFile": "live-dialogues-second-regression.json",
+      "startedAt": "2026-11-25T15:40:52.530Z",
+      "finishedAt": "2026-11-25T15:41:54.528Z",
+      "model": "deepseek-flash",
+      "summary": {
+        "scenariosPlanned": 54,
+        "scenariosExecuted": 54,
+        "scenariosCompleted": 54,
+        "passed": 53,
+        "failed": 1,
+        "turnsExecuted": 65,
+        "skippedTurns": 0,
+        "wrongMutations": 0,
+        "modelErrors": 1
+      },
+      "failures": [
+        {
+          "id": "multiple-actions",
+          "category": "多意图与范围",
+          "rationale": "当前只支持本轮一个操作，应澄清拆分而非执行一半。",
+          "repeat": 1,
+          "turnsPlanned": 1,
+          "passed": false,
+          "turns": [
+            {
+              "input": "帮我记买面包，再把取快递删掉。",
+              "reply": "模型返回的操作格式无效，本轮没有修改任务。请换一种说法重试。",
+              "kind": "error",
+              "expectedKinds": ["clarify", "help"],
+              "before": [
+                {
+                  "key": "milk",
+                  "title": "买牛奶",
+                  "done": false
+                },
+                {
+                  "key": "courier",
+                  "title": "取快递",
+                  "done": false
+                }
+              ],
+              "expected": [
+                {
+                  "key": "milk",
+                  "title": "买牛奶",
+                  "done": false
+                },
+                {
+                  "key": "courier",
+                  "title": "取快递",
+                  "done": false
+                }
+              ],
+              "actual": [
+                {
+                  "key": "milk",
+                  "title": "买牛奶",
+                  "done": false
+                },
+                {
+                  "key": "courier",
+                  "title": "取快递",
+                  "done": false
+                }
+              ],
+              "durationMs": 1404,
+              "passed": false,
+              "statePassed": true,
+              "wrongMutation": false,
+              "failure": "回复类型error不属于预期clarify/help"
+            }
+          ],
+          "skippedTurns": 0
+        }
+      ]
+    },
+    {
+      "sourceFile": "live-dialogues-oracle-review-original.json",
+      "startedAt": "2026-11-25T15:43:59.811Z",
+      "finishedAt": "2026-11-25T15:45:02.641Z",
+      "model": "deepseek-flash",
+      "summary": {
+        "scenariosPlanned": 54,
+        "scenariosExecuted": 54,
+        "scenariosCompleted": 54,
+        "passed": 53,
+        "failed": 1,
+        "turnsExecuted": 65,
+        "skippedTurns": 0,
+        "wrongMutations": 0,
+        "modelErrors": 0
+      },
+      "failures": [
+        {
+          "id": "overlong-title",
+          "category": "参数与能力边界",
+          "rationale": "超长标题不能擅自缩短后写入。",
+          "repeat": 1,
+          "turnsPlanned": 1,
+          "passed": false,
+          "turns": [
+            {
+              "input": "帮我记一下字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字字",
+              "reply": "任务标题超过200字符，请缩短后再记录。",
+              "kind": "unknown",
+              "expectedKinds": ["clarify", "help"],
+              "before": [],
+              "expected": [],
+              "actual": [],
+              "durationMs": 994,
+              "passed": false,
+              "statePassed": true,
+              "wrongMutation": false,
+              "failure": "回复类型unknown不属于预期clarify/help"
+            }
+          ],
+          "skippedTurns": 0
+        }
+      ]
+    },
+    {
+      "sourceFile": "live-dialogues-context-check.json",
+      "startedAt": "2026-11-25T15:40:04.616Z",
+      "finishedAt": "2026-11-25T15:40:21.854Z",
+      "model": "deepseek-flash",
+      "summary": {
+        "scenariosPlanned": 8,
+        "scenariosExecuted": 8,
+        "scenariosCompleted": 8,
+        "passed": 8,
+        "failed": 0,
+        "turnsExecuted": 18,
+        "skippedTurns": 0,
+        "wrongMutations": 0,
+        "modelErrors": 0
+      },
+      "failures": []
+    },
+    {
+      "sourceFile": "live-dialogues-multi-check.json",
+      "startedAt": "2026-11-25T15:43:27.406Z",
+      "finishedAt": "2026-11-25T15:43:35.720Z",
+      "model": "deepseek-flash",
+      "summary": {
+        "scenariosPlanned": 9,
+        "scenariosExecuted": 9,
+        "scenariosCompleted": 9,
+        "passed": 9,
+        "failed": 0,
+        "turnsExecuted": 9,
+        "skippedTurns": 0,
+        "wrongMutations": 0,
+        "modelErrors": 0
+      },
+      "failures": []
+    },
+    {
+      "sourceFile": "live-dialogues-fix-check.json",
+      "startedAt": "2026-11-25T15:38:04.805Z",
+      "finishedAt": "2026-11-25T15:38:11.394Z",
+      "model": "deepseek-flash",
+      "summary": {
+        "scenariosPlanned": 5,
+        "scenariosExecuted": 5,
+        "passed": 5,
+        "failed": 0,
+        "turnsExecuted": 6,
+        "skippedTurns": 0,
+        "wrongMutations": 0,
+        "modelErrors": 0
+      },
+      "failures": []
+    }
+  ]
+}

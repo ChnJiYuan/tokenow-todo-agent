@@ -24,10 +24,7 @@ function chooseMessage(tasks: Task[], candidates: Task[]) {
 }
 
 // 同名任务不能靠模型随意选 ID；只有当前请求中的明确编号可以消除歧义。
-function explicitPosition(message: string) {
-  const match = message.match(/第\s*(\d+|[一二三四五六七八九十两]+)\s*[条个项]/);
-  if (!match) return undefined;
-  const number = match[1];
+function explicitPositions(message: string) {
   const digits: Record<string, number> = {
     一: 1,
     二: 2,
@@ -40,31 +37,40 @@ function explicitPosition(message: string) {
     八: 8,
     九: 9,
   };
-  const [tens, units] = number.split("十");
-  return /^\d+$/.test(number)
-    ? Number(number)
-    : number.includes("十")
-      ? (digits[tens] || 1) * 10 + (digits[units] || 0)
-      : digits[number];
+  return [...message.matchAll(/第\s*(\d+|[一二三四五六七八九十两]+)\s*[条个项]/g)].map((match) => {
+    const number = match[1];
+    const [tens, units] = number.split("十");
+    return /^\d+$/.test(number)
+      ? Number(number)
+      : number.includes("十")
+        ? (digits[tens] || 1) * 10 + (digits[units] || 0)
+        : digits[number];
+  });
 }
 
 function explicitlySelects(message: string, task: Task, tasks: Task[]) {
   if (message.includes(task.id)) return true;
   if (message.includes(`#${task.id.slice(0, 8)}`))
     return tasks.filter((item) => item.id.startsWith(task.id.slice(0, 8))).length === 1;
-  return tasks[(explicitPosition(message) ?? 0) - 1]?.id === task.id;
+  return explicitPositions(message).some((position) => tasks[position - 1]?.id === task.id);
 }
 
 // 清单编号可能因删除而变化。上轮展示的编号必须仍然指向本轮选择的 ID。
 function matchesDisplayedPosition(messages: ChatMessage[], task: Task) {
-  const position = explicitPosition(messages.at(-1)!.content);
-  if (position === undefined) return true;
+  const positions = explicitPositions(messages.at(-1)!.content);
+  if (!positions.length) return true;
   for (const message of messages.slice(0, -1).reverse()) {
     if (message.role !== "assistant") continue;
     const lines = [...message.content.matchAll(/^(\d+)\. .*（#([a-zA-Z0-9-]+)）$/gm)];
     if (!lines.length) continue;
-    const reference = lines.find((line) => Number(line[1]) === position)?.[2];
-    return reference !== undefined && task.id.startsWith(reference);
+    // 肯否定语义由规划器判断；执行器检查所选ID是否对应用户提及的某个编号。
+    // 标题换行伪造同号列表行时，必须是唯一映射，不能随意挑一条引用。
+    return positions.some((position) => {
+      const references = [
+        ...new Set(lines.filter((line) => Number(line[1]) === position).map((line) => line[2])),
+      ];
+      return references.length === 1 && task.id.startsWith(references[0]);
+    });
   }
   return true;
 }
@@ -101,7 +107,17 @@ export function createAgent({
         }),
       ]);
       const parsed = planSchema.safeParse(output);
-      if (!parsed.success) throw new InvalidPlanError();
+      if (!parsed.success) {
+        if (
+          parsed.error.issues.some(
+            (issue) =>
+              issue.path[0] === "title" && (issue.code === "too_big" || issue.code === "too_small"),
+          )
+        ) {
+          return "请把任务标题控制在 1 至 200 个字符内，再告诉我要记录的事项。";
+        }
+        throw new InvalidPlanError();
+      }
       plan = parsed.data;
     } catch (error) {
       if (error instanceof MissingModelKeyError)

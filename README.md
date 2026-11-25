@@ -27,9 +27,13 @@ npm run fmt:check
 npm run build
 # 配置密钥后单独运行，会产生少量真实模型调用费用：
 npm run verify:live
+# 更多高干扰真实对话（需要密钥，会产生模型调用费用）：
+npm run verify:dialogues
 ```
 
 自动测试不调用模型，全部使用临时任务文件。`verify:live` 启动独立生产服务，检查官方六步对话、磁盘状态、刷新后的空历史、真实进程重启、洗衣服场景及最近任务指代，并自动清理测试数据。
+
+`verify:dialogues` 进一步验证否定、模糊指代、反讽、同名、多意图和指令干扰，保留逐例JSON结果及失败基线，见 [高干扰真实对话测试](docs/DIALOGUE_TESTS.md)。
 
 详细配置见 [本地开发指南](GETTING_STARTED.md)。实现讲解和已知限制见 [工程说明](docs/ENGINEERING.md)，实际执行结果见 [验证记录](docs/VERIFICATION.md)。[提交说明](SUBMIT.md) 使用 AI 辅助整理，提交前由候选人复核。
 

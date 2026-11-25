@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test server/*.test.ts",
     "verify:live": "node --env-file-if-exists=.env scripts/verify-live.ts",
+    "verify:dialogues": "node --env-file-if-exists=.env scripts/verify-dialogues.ts",
     "preview:mock": "npm run build && node scripts/preview-mock.ts",
     "fmt": "oxfmt --write .",
     "fmt:check": "oxfmt --check .",
