@@ -1,9 +1,43 @@
 # 小明智能体 · 待办清单编程题
 
+基于 [TokeNow/todo-agent](https://github.com/TokeNow/todo-agent) 模板实现的中文待办智能体。
+
+当前已实现创建、查询、完成和删除任务；复用本地 JSON 持久化，增加任务面板、状态筛选、歧义澄清和请求去重。模型负责生成结构化计划，服务端校验并执行，回复来自真实执行结果。无需新增依赖。
+
+## 运行当前项目
+
+需要 Node.js **24.12.0 或更高版本**（`.nvmrc` 指定 24.12.0）。
+
+```sh
+git clone https://github.com/ChnJiYuan/tokenow-todo-agent.git
+cd tokenow-todo-agent
+npm ci
+cp .env.example .env
+# 在本地 .env 填写 DEEPSEEK_API_KEY，默认 DEEPSEEK_MODEL=deepseek-flash
+npm run dev
+```
+
+打开 <http://127.0.0.1:3000>。未配置密钥时，聊天会提示配置方法，不会假装执行；任务 API 和清单面板仍可使用。已存在 `.env` 时请直接编辑，不要覆盖。
+
+```sh
+npm test
+npm run typecheck
+npm run lint
+npm run fmt:check
+npm run build
+# 配置密钥后单独运行，会产生少量真实模型调用费用：
+npm run verify:live
+```
+
+自动测试不调用模型，全部使用临时任务文件。`verify:live` 启动独立生产服务，检查官方六步对话、磁盘状态、刷新后的空历史、真实进程重启、洗衣服场景及最近任务指代，并自动清理测试数据。
+
+详细配置见 [本地开发指南](GETTING_STARTED.md)。实现讲解和已知限制见 [工程说明](docs/ENGINEERING.md)，实际执行结果见 [验证记录](docs/VERIFICATION.md)。`SUBMIT.md` 保留模板原文，由应聘人本人撰写。
+
+## 原题说明
+
 请把小明改造成一个待办清单智能体，让用户用中文对话管理自己的任务。项目已经提供聊天界面、可持久化的任务 API 和 DeepSeek 客户端。
 
-初次启动时，无论你说什么，小明都会回复「你好，欢迎使用小明智能体」。
-
+模板原始版本的智能体返回固定欢迎语；当前实现已替换这一行为。
 
 ## 基础要求
 
@@ -23,7 +57,6 @@
 | 牛奶买好了       | 把「买牛奶」标记为已完成，「取快递」仍待办 |
 | 取快递这条删掉吧 | 删除「取快递」                             |
 | 再给我看看清单   | 只剩已完成的「买牛奶」                     |
-
 
 ## 可选扩展
 
@@ -52,7 +85,7 @@ npm ci
 npm run dev
 ```
 
-打开 <http://127.0.0.1:3000>，发送一条消息即可看到初始回复。接入模型时，把 `.env.example` 复制为 `.env`，填写自己的 `DEEPSEEK_API_KEY`，再重启服务。详细步骤见[本地开发指南](GETTING_STARTED.md)。
+打开 <http://127.0.0.1:3000>。接入模型时，把 `.env.example` 复制为 `.env`，填写自己的 `DEEPSEEK_API_KEY`，再重启服务。详细步骤见[本地开发指南](GETTING_STARTED.md)。
 
 ## 模型费用
 

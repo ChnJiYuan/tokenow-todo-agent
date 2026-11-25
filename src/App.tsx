@@ -2,6 +2,7 @@ import { useRef, useState, type KeyboardEvent } from "react";
 import type { ChatMessage } from "../shared/chat.ts";
 import { requestReply } from "./chat-client.ts";
 import { ChatHistory } from "./ChatHistory.tsx";
+import { TaskPanel } from "./TaskPanel.tsx";
 
 function isSendShortcut(event: KeyboardEvent<HTMLTextAreaElement>) {
   // 中文输入法会用 Enter 确认选词，部分浏览器此时只报告键码 229。
@@ -14,24 +15,33 @@ export default function App() {
   const [draft, setDraft] = useState("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
+  const [taskVersion, setTaskVersion] = useState(0);
   const input = useRef<HTMLTextAreaElement>(null);
+  const inFlight = useRef(false);
+  const retry = useRef<{ body: string; id: string } | null>(null);
 
   async function send(text: string) {
     const content = text.trim();
-    if (!content || pending) return;
+    if (!content || inFlight.current) return;
+    inFlight.current = true;
     const outgoing: ChatMessage[] = [...messages, { role: "user", content }];
+    const body = JSON.stringify(outgoing);
+    if (retry.current?.body !== body) retry.current = { body, id: crypto.randomUUID() };
     setMessages(outgoing);
     setDraft("");
     setPending(true);
     setError("");
     try {
-      const answer = await requestReply(outgoing);
+      const answer = await requestReply(outgoing, retry.current.id);
+      retry.current = null;
       setMessages([...outgoing, { role: "assistant", content: answer }]);
     } catch (cause) {
       setMessages(messages);
       setDraft(text);
       setError(cause instanceof Error ? `发送失败：${cause.message}` : "发送失败，请重试。");
     } finally {
+      inFlight.current = false;
+      setTaskVersion((value) => value + 1);
       setPending(false);
       requestAnimationFrame(() => input.current?.focus());
     }
@@ -44,42 +54,45 @@ export default function App() {
         <strong>TokeNow</strong>
         <span>小明智能体</span>
       </header>
-      <main>
-        <ChatHistory messages={messages} pending={pending} onSelectPrompt={send} />
-        <div className="compose">
-          {error && (
-            <p className="error" role="alert">
-              {error}
-            </p>
-          )}
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              void send(draft);
-            }}
-          >
-            <textarea
-              aria-label="消息"
-              ref={input}
-              placeholder="输入消息…"
-              rows={2}
-              value={draft}
-              readOnly={pending}
-              onChange={(event) => setDraft(event.target.value)}
-              onKeyDown={(event) => {
-                if (isSendShortcut(event)) {
-                  event.preventDefault();
-                  void send(draft);
-                }
+      <div className="workspace">
+        <main>
+          <ChatHistory messages={messages} pending={pending} onSelectPrompt={send} />
+          <div className="compose">
+            {error && (
+              <p className="error" role="alert">
+                {error}
+              </p>
+            )}
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                void send(draft);
               }}
-            />
-            <button className="send" disabled={pending || !draft.trim()} aria-label="发送消息">
-              ↑
-            </button>
-          </form>
-          <small>Enter 发送 · Shift + Enter 换行</small>
-        </div>
-      </main>
+            >
+              <textarea
+                aria-label="消息"
+                ref={input}
+                placeholder="输入消息…"
+                rows={2}
+                value={draft}
+                readOnly={pending}
+                onChange={(event) => setDraft(event.target.value)}
+                onKeyDown={(event) => {
+                  if (isSendShortcut(event)) {
+                    event.preventDefault();
+                    void send(draft);
+                  }
+                }}
+              />
+              <button className="send" disabled={pending || !draft.trim()} aria-label="发送消息">
+                ↑
+              </button>
+            </form>
+            <small>Enter 发送 · Shift + Enter 换行</small>
+          </div>
+        </main>
+        <TaskPanel version={taskVersion} />
+      </div>
     </div>
   );
 }

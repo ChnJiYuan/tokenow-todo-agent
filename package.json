@@ -9,6 +9,8 @@
     "start": "node --env-file-if-exists=.env server/index.ts",
     "typecheck": "tsc --noEmit",
     "test": "node --test server/*.test.ts",
+    "verify:live": "node --env-file-if-exists=.env scripts/verify-live.ts",
+    "preview:mock": "npm run build && node scripts/preview-mock.ts",
     "fmt": "oxfmt --write .",
     "fmt:check": "oxfmt --check .",
     "lint": "oxlint .",

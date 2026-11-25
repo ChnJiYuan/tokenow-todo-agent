@@ -1,12 +1,6 @@
 import { Router } from "express";
-import { z } from "zod";
+import { createTaskSchema, updateTaskSchema } from "../shared/tasks.ts";
 import type { TaskStore } from "./task-store.ts";
-
-const createTaskSchema = z.strictObject({ title: z.string().trim().min(1).max(200) });
-const updateTaskSchema = createTaskSchema
-  .partial()
-  .extend({ done: z.boolean().optional() })
-  .refine((changes) => Object.keys(changes).length > 0);
 
 const taskNotFound = { error: "找不到这条任务。" };
 

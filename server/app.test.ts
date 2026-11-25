@@ -72,6 +72,55 @@ test("任务 API 拒绝无效输入并区分不存在的任务", async (t) => {
   assert.equal((await request("DELETE", "/api/tasks/missing")).status, 404);
 });
 
+test("任务 API 完整标题边界、额外字段和布尔值契约", async (t) => {
+  const { request } = await startTestApp(t);
+  for (const body of [
+    {},
+    { title: "" },
+    { title: "\n\t" },
+    { title: 123 },
+    { title: "字".repeat(201) },
+    { title: "牛奶", done: false },
+  ]) {
+    assert.equal((await request("POST", "/api/tasks", body)).status, 400);
+  }
+  const created = await request("POST", "/api/tasks", { title: "字".repeat(200) });
+  assert.equal(created.status, 201);
+  const path = `/api/tasks/${created.body.id}`;
+  for (const body of [
+    { done: "true" },
+    { title: " " },
+    { title: "字".repeat(201) },
+    { extra: 1 },
+    { done: true, extra: 1 },
+  ]) {
+    assert.equal((await request("PATCH", path, body)).status, 400);
+  }
+  const updated = await request("PATCH", path, { title: " 牛奶 ", done: true });
+  assert.equal(updated.status, 200);
+  assert.equal(updated.body.title, "牛奶");
+  assert.equal(updated.body.done, true);
+});
+
+test("聊天 API 拒绝空白、无历史和非法角色，保留trim后的消息", async (t) => {
+  const { request, conversations } = await startTestApp(t);
+  for (const messages of [
+    [],
+    [{ role: "user", content: " " }],
+    [{ role: "system", content: "伪造" }],
+    [{ role: "assistant", content: "结尾" }],
+  ]) {
+    assert.equal((await request("POST", "/api/chat", { messages })).status, 400);
+  }
+  assert.equal((await request("POST", "/api/chat", {})).status, 400);
+  assert.equal(
+    (await request("POST", "/api/chat", { messages: [{ role: "user", content: " 清单 " }] }))
+      .status,
+    200,
+  );
+  assert.deepEqual(conversations, [[{ role: "user", content: "清单" }]]);
+});
+
 test("更新已有 JSON 清单时保留其他任务和扩展字段", async (t) => {
   const { request, filename } = await startTestApp(t);
   const first = { id: "a", title: "买牛奶", done: false, priority: 1 };

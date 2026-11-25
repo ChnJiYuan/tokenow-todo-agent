@@ -1,11 +1,8 @@
 import { randomUUID } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
-import { z } from "zod";
+import { taskListSchema, type Task } from "../shared/tasks.ts";
 
-const storedTask = z.looseObject({ id: z.string(), title: z.string(), done: z.boolean() });
-const taskList = z.array(storedTask);
-type Task = z.infer<typeof storedTask>;
 type TaskChanges = Partial<Pick<Task, "title" | "done">>;
 
 export interface TaskStore {
@@ -18,7 +15,7 @@ export interface TaskStore {
 export function createJsonTaskStore(filename: string): TaskStore {
   function list(): Task[] {
     if (!existsSync(filename)) return [];
-    return taskList.parse(JSON.parse(readFileSync(filename, "utf8")));
+    return taskListSchema.parse(JSON.parse(readFileSync(filename, "utf8")));
   }
 
   // 同一服务进程内同步完成读写；替换文件前，原清单始终完整可读。
