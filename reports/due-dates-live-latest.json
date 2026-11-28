@@ -1,0 +1,505 @@
+{
+  "startedAt": "2026-11-26T09:15:37.752Z",
+  "finishedAt": "2026-11-26T09:15:47.209Z",
+  "model": "deepseek-flash",
+  "dateContext": {
+    "today": "2026-12-31",
+    "timeZone": "Australia/Sydney"
+  },
+  "sourceHashes": {
+    "shared/dates.ts": "b74df16b07b32becaeca00fbb65ce0cf407bd68ae114707009b25f1057a2d032",
+    "shared/tasks.ts": "ceea3543bf7e2f851fae18e6b8d467b636a4f417dc1a2bc31f078dcc92e8f227",
+    "shared/task-view.ts": "131a8f82c071d74d9bfe64cc18de4326b8f98e3129fd7db332388bc5615799d2",
+    "server/task-clock.ts": "fb807c30a4828abe8def472dcd1947ef53ab254ca04c5a1be0215c508727ded2",
+    "server/planner.ts": "0eef5c058a9147da514100b9f8b6241a818c4febe66c86b965e1e3075c599909",
+    "server/agent.ts": "01bcb3e1e7dd6b59b4dfca92298de75c3cabf1c07b481eafe02ae1524dde5718",
+    "server/task-store.ts": "212816bb5f4feaef9b689f36bb6879deccd5419c6a3ef25638110b7691ee6b92",
+    "scripts/verify-due-dates.ts": "948db3e7efd5e254e201aa0b21dd9d5523cac39877b8d8dfb470d63bf8052c30"
+  },
+  "passed": true,
+  "turns": [
+    {
+      "input": "明天之前要买牛奶，帮我记一下。",
+      "passed": true,
+      "reply": "已添加待办：买牛奶（未完成 · 优先级中 · 工作量中 · 到期 2027-01-01，#bd3807b0）。",
+      "tasks": [
+        {
+          "id": "04ecd97d-9fe0-4c80-9269-9a29df7903bb",
+          "title": "今日待办",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "aa45a915-0987-4af2-a52b-6c01f6d1c16f",
+          "title": "今日已完成",
+          "done": true,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3cda08dd-8094-4226-9271-89afe92bede3",
+          "title": "逾期任务",
+          "done": false,
+          "dueDate": "2026-12-30",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "ff4c48d0-76c3-4391-9825-71cc1379a262",
+          "title": "无日期任务",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3b3e3bbc-e9ba-4a03-8e1a-2d8fe909156e",
+          "title": "明日待办",
+          "done": false,
+          "dueDate": "2027-01-01",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "bd3807b0-f4db-4d4c-bb29-997b361167c4",
+          "title": "买牛奶",
+          "done": false,
+          "dueDate": "2027-01-01",
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "明天到期的任务有哪些？",
+      "passed": true,
+      "reply": "2027-01-01 到期的未完成任务：共 2 条。\n5. ☐ 未完成 · 明日待办 · 优先级中 · 工作量中 · 到期 2027-01-01（#3b3e3bbc）\n6. ☐ 未完成 · 买牛奶 · 优先级中 · 工作量中 · 到期 2027-01-01（#bd3807b0）",
+      "tasks": [
+        {
+          "id": "04ecd97d-9fe0-4c80-9269-9a29df7903bb",
+          "title": "今日待办",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "aa45a915-0987-4af2-a52b-6c01f6d1c16f",
+          "title": "今日已完成",
+          "done": true,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3cda08dd-8094-4226-9271-89afe92bede3",
+          "title": "逾期任务",
+          "done": false,
+          "dueDate": "2026-12-30",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "ff4c48d0-76c3-4391-9825-71cc1379a262",
+          "title": "无日期任务",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3b3e3bbc-e9ba-4a03-8e1a-2d8fe909156e",
+          "title": "明日待办",
+          "done": false,
+          "dueDate": "2027-01-01",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "bd3807b0-f4db-4d4c-bb29-997b361167c4",
+          "title": "买牛奶",
+          "done": false,
+          "dueDate": "2027-01-01",
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "把买牛奶改成今天到期。",
+      "passed": true,
+      "reply": "已修改到期日期：买牛奶 · 到期 2026-12-31（#bd3807b0）。",
+      "tasks": [
+        {
+          "id": "04ecd97d-9fe0-4c80-9269-9a29df7903bb",
+          "title": "今日待办",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "aa45a915-0987-4af2-a52b-6c01f6d1c16f",
+          "title": "今日已完成",
+          "done": true,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3cda08dd-8094-4226-9271-89afe92bede3",
+          "title": "逾期任务",
+          "done": false,
+          "dueDate": "2026-12-30",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "ff4c48d0-76c3-4391-9825-71cc1379a262",
+          "title": "无日期任务",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3b3e3bbc-e9ba-4a03-8e1a-2d8fe909156e",
+          "title": "明日待办",
+          "done": false,
+          "dueDate": "2027-01-01",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "bd3807b0-f4db-4d4c-bb29-997b361167c4",
+          "title": "买牛奶",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "今天有哪些任务到期？",
+      "passed": true,
+      "reply": "2026-12-31 到期的未完成任务：共 2 条。\n1. ☐ 未完成 · 今日待办 · 优先级中 · 工作量中 · 到期 2026-12-31（#04ecd97d）\n6. ☐ 未完成 · 买牛奶 · 优先级中 · 工作量中 · 到期 2026-12-31（#bd3807b0）",
+      "tasks": [
+        {
+          "id": "04ecd97d-9fe0-4c80-9269-9a29df7903bb",
+          "title": "今日待办",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "aa45a915-0987-4af2-a52b-6c01f6d1c16f",
+          "title": "今日已完成",
+          "done": true,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3cda08dd-8094-4226-9271-89afe92bede3",
+          "title": "逾期任务",
+          "done": false,
+          "dueDate": "2026-12-30",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "ff4c48d0-76c3-4391-9825-71cc1379a262",
+          "title": "无日期任务",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3b3e3bbc-e9ba-4a03-8e1a-2d8fe909156e",
+          "title": "明日待办",
+          "done": false,
+          "dueDate": "2027-01-01",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "bd3807b0-f4db-4d4c-bb29-997b361167c4",
+          "title": "买牛奶",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "今天到期的任务有哪些？包含已完成的。",
+      "passed": true,
+      "reply": "2026-12-31 到期的全部任务（含已完成）：共 3 条。\n1. ☐ 未完成 · 今日待办 · 优先级中 · 工作量中 · 到期 2026-12-31（#04ecd97d）\n2. ☑ 已完成 · 今日已完成 · 优先级中 · 工作量中 · 到期 2026-12-31（#aa45a915）\n6. ☐ 未完成 · 买牛奶 · 优先级中 · 工作量中 · 到期 2026-12-31（#bd3807b0）",
+      "tasks": [
+        {
+          "id": "04ecd97d-9fe0-4c80-9269-9a29df7903bb",
+          "title": "今日待办",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "aa45a915-0987-4af2-a52b-6c01f6d1c16f",
+          "title": "今日已完成",
+          "done": true,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3cda08dd-8094-4226-9271-89afe92bede3",
+          "title": "逾期任务",
+          "done": false,
+          "dueDate": "2026-12-30",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "ff4c48d0-76c3-4391-9825-71cc1379a262",
+          "title": "无日期任务",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3b3e3bbc-e9ba-4a03-8e1a-2d8fe909156e",
+          "title": "明日待办",
+          "done": false,
+          "dueDate": "2027-01-01",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "bd3807b0-f4db-4d4c-bb29-997b361167c4",
+          "title": "买牛奶",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "再看看今天到期的任务。",
+      "passed": true,
+      "reply": "2026-12-31 到期的未完成任务：共 2 条。\n1. ☐ 未完成 · 今日待办 · 优先级中 · 工作量中 · 到期 2026-12-31（#04ecd97d）\n6. ☐ 未完成 · 买牛奶 · 优先级中 · 工作量中 · 到期 2026-12-31（#bd3807b0）",
+      "tasks": [
+        {
+          "id": "04ecd97d-9fe0-4c80-9269-9a29df7903bb",
+          "title": "今日待办",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "aa45a915-0987-4af2-a52b-6c01f6d1c16f",
+          "title": "今日已完成",
+          "done": true,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3cda08dd-8094-4226-9271-89afe92bede3",
+          "title": "逾期任务",
+          "done": false,
+          "dueDate": "2026-12-30",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "ff4c48d0-76c3-4391-9825-71cc1379a262",
+          "title": "无日期任务",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3b3e3bbc-e9ba-4a03-8e1a-2d8fe909156e",
+          "title": "明日待办",
+          "done": false,
+          "dueDate": "2027-01-01",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "bd3807b0-f4db-4d4c-bb29-997b361167c4",
+          "title": "买牛奶",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "取消买牛奶的到期日期。",
+      "passed": true,
+      "reply": "已清除到期日期：买牛奶（#bd3807b0）。",
+      "tasks": [
+        {
+          "id": "04ecd97d-9fe0-4c80-9269-9a29df7903bb",
+          "title": "今日待办",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "aa45a915-0987-4af2-a52b-6c01f6d1c16f",
+          "title": "今日已完成",
+          "done": true,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3cda08dd-8094-4226-9271-89afe92bede3",
+          "title": "逾期任务",
+          "done": false,
+          "dueDate": "2026-12-30",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "ff4c48d0-76c3-4391-9825-71cc1379a262",
+          "title": "无日期任务",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3b3e3bbc-e9ba-4a03-8e1a-2d8fe909156e",
+          "title": "明日待办",
+          "done": false,
+          "dueDate": "2027-01-01",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "bd3807b0-f4db-4d4c-bb29-997b361167c4",
+          "title": "买牛奶",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "明天上午9点提醒我买牛奶。",
+      "passed": true,
+      "reply": "目前只能记录到期日期，不能在指定时间提醒或发送通知。你希望只记录任务及到期日期吗？",
+      "tasks": [
+        {
+          "id": "04ecd97d-9fe0-4c80-9269-9a29df7903bb",
+          "title": "今日待办",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "aa45a915-0987-4af2-a52b-6c01f6d1c16f",
+          "title": "今日已完成",
+          "done": true,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3cda08dd-8094-4226-9271-89afe92bede3",
+          "title": "逾期任务",
+          "done": false,
+          "dueDate": "2026-12-30",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "ff4c48d0-76c3-4391-9825-71cc1379a262",
+          "title": "无日期任务",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3b3e3bbc-e9ba-4a03-8e1a-2d8fe909156e",
+          "title": "明日待办",
+          "done": false,
+          "dueDate": "2027-01-01",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "bd3807b0-f4db-4d4c-bb29-997b361167c4",
+          "title": "买牛奶",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "把买牛奶改成2027-02-29到期。",
+      "passed": true,
+      "reply": "2027-02-29 不是有效日期，你想改成哪一天到期？",
+      "tasks": [
+        {
+          "id": "04ecd97d-9fe0-4c80-9269-9a29df7903bb",
+          "title": "今日待办",
+          "done": false,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "aa45a915-0987-4af2-a52b-6c01f6d1c16f",
+          "title": "今日已完成",
+          "done": true,
+          "dueDate": "2026-12-31",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3cda08dd-8094-4226-9271-89afe92bede3",
+          "title": "逾期任务",
+          "done": false,
+          "dueDate": "2026-12-30",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "ff4c48d0-76c3-4391-9825-71cc1379a262",
+          "title": "无日期任务",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "3b3e3bbc-e9ba-4a03-8e1a-2d8fe909156e",
+          "title": "明日待办",
+          "done": false,
+          "dueDate": "2027-01-01",
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "bd3807b0-f4db-4d4c-bb29-997b361167c4",
+          "title": "买牛奶",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    }
+  ]
+}

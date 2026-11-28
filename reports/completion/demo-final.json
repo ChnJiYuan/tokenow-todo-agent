@@ -1,0 +1,1169 @@
+{
+  "startedAt": "2026-11-26T09:58:47.820Z",
+  "finishedAt": "2026-11-26T10:01:06.386Z",
+  "realModel": true,
+  "model": "deepseek-flash",
+  "nodeVersion": "v25.9.0",
+  "sourceHashes": {
+    "package-lock.json": "d9874f679b02a03320bf70ad18f5f0a58c1ff9b5ea4f15e020254517ecda4aba",
+    "package.json": "2d1d31f22dcf8f2b2c8c850fa44f08d539bc43174cc65a52ed976af019bdb605",
+    "public/index.html": "d2b5345fd41e9cdb1447667f1ea5ba60931e7ebf0a437bfdf0f96c57710e14b6",
+    "public/logo.png": "67a1a7ccf36dd8cfa05d209d8e7c0e0fa90b53c684b94cad352d317563f76a9d",
+    "public/style.css": "ba739d4302de01027f7c1ae2808c38b33f87d47dee7c9832c4ec0749ceceeeb1",
+    "scripts/dialogue-cases.ts": "16de3ae8ddda4c770a98e7781390c2eb80f807d47b7598d9d62a4e70df58ffb6",
+    "scripts/dialogue-checks.ts": "3e9933a381c8a3076773a5b2586e31bb905a3420caab18a0f9755b553eda8817",
+    "scripts/live-server.ts": "99f31fc30ecc3b8d14fdc53e27e793391021626580fe493f88c5fe540c855772",
+    "scripts/preview-demo.ts": "839ccd289885155383fe46bad83012b991ddf87d6f5b1ba21211bdb7efe46d6e",
+    "scripts/preview-mock.ts": "e21c971631dcd6161dc06cf8a6768c40d28e2c96cc1c633f35c5cbc249d5690f",
+    "scripts/verification-support.ts": "b2a321b6f13828a647b91e36309ae8123ae60e0a87633dc8c2ea7302c94c49cf",
+    "scripts/verify-attributes.ts": "d60a6d0a1fe67b327c0c4239f87ccea931471679c015302f0080aae13e56b49d",
+    "scripts/verify-demo.ts": "f998ba9a2950f589d03697dd84ad4e77e5b7d36858d8191d31be36547253c18e",
+    "scripts/verify-dialogues.ts": "7875a9a13b8a6b3b41600d79bf64c3afd081e2ec44ea31e0c8d48a3d40ca46d2",
+    "scripts/verify-due-dates.ts": "ba001e8287b1e75bdad3340213b9e3012354d3242075be752039eb4716b5115e",
+    "scripts/verify-live.ts": "b2db7a387e1cd3bc73ea633fc7bd53ae94c73a4f4acda73849177f9c61026c9c",
+    "server/agent.test.ts": "e5d1d3a0a1f9ed1d99f1a1ca4cbee08db809f488cede2ab810e726f73130927d",
+    "server/agent.ts": "324b15849bfed50d59379bd0211898280a4e58588a6a59c1b24467560bcc87dd",
+    "server/app.test.ts": "0e11760959fe231b9cb49dd1bac05921d35319dd9b265a0306650fa1d659c351",
+    "server/app.ts": "e4e8dca3890fed950238e95e88311afd1ba338948602385a64015aa6dd243a9a",
+    "server/attributes.test.ts": "2113c09c5e211a89ea73a024fa50fe7ff480997f76231db29f51320b51ac6e83",
+    "server/chat-cache.ts": "ba9b994f148ceb55da6f91e82ce4a10c7b5607ed75327f4d3cc173b1acb4d6b5",
+    "server/chat-client.test.ts": "bdaa47fe000874906b4bea210a27fc7b249a70048fec33d968a72ee894553d6e",
+    "server/dates.test.ts": "936ddd447872586e2864e42b9f2b36a6151515c0be37bead8b9fda5155c808d6",
+    "server/dialogue-checks.test.ts": "22ed7140eccb38f55c65ad179fb04537f98c419d8da8ed6ce8859bcacc4f322a",
+    "server/due-date.test.ts": "850078940e374474d21ceb9748d59809389e7a6ba251627721b4071d3b0b95b1",
+    "server/index.ts": "244fbd7841833871789cdf8d1a45c1dc808b7c268d070672546f6d168fd427f1",
+    "server/model.test.ts": "65981fb87fb95472e2bbf5dc3f42fd906a95db7e38609c452261219b4c2ebb37",
+    "server/model.ts": "037cd90106fe213c48b0bbc1633c55022c2f5816f3d9534541984e7dabce9352",
+    "server/openapi.yaml": "fd756ffa4a908ba1a1a640a20ed0b0a176741980193d931774579ae0d12db9f7",
+    "server/planner.test.ts": "c6e98c98f94005f8a365b46e9b4d61945dc49916beee11680982af036376dedc",
+    "server/planner.ts": "854f27bce99285c05ebf35252aca1f45f959ce8669e73a57fd93533b52fa0cf8",
+    "server/process.test.ts": "de9a607f3039f7a587043ba2f0a9205ed993d52091efec8bb2e429a2b39024a1",
+    "server/subtasks.test.ts": "b1f1f671f2e0034d450a9f875d679e6caa170bf000cc27002a1e3ede72d391c5",
+    "server/task-clock.ts": "fb807c30a4828abe8def472dcd1947ef53ab254ca04c5a1be0215c508727ded2",
+    "server/task-rules.ts": "162a1e1497600c524ca11e2fbda6cd17323e307176328b0e93ba18e46a718b32",
+    "server/task-store.test.ts": "c0ce3643c967b4eb5675baba6d2ab648f9fb49650632d61d6d733cba180a2e9e",
+    "server/task-store.ts": "212816bb5f4feaef9b689f36bb6879deccd5419c6a3ef25638110b7691ee6b92",
+    "server/tasks.ts": "b2b60ae64871fdff3b93a57ddbbcfb8054d65213ca374e444cc1c181a3a6a7a8",
+    "server/test-support.ts": "9f10402b14988e581912bd61452d15aefaebfc7a602737fb0e86ccee24bb8e73",
+    "shared/chat.ts": "471993fcdf6b6c00a3e2bac024dfbe5c4ae5b98c41ce25eaa042e3b91819f159",
+    "shared/dates.ts": "b74df16b07b32becaeca00fbb65ce0cf407bd68ae114707009b25f1057a2d032",
+    "shared/task-view.ts": "5e4a3328a9063d661879e333adec50eea9dede11b530c2168d1a512a837a1c0d",
+    "shared/tasks.ts": "ceea3543bf7e2f851fae18e6b8d467b636a4f417dc1a2bc31f078dcc92e8f227",
+    "src/App.tsx": "da5df9e157d40e7a7cf465235b131213eba3b50fd5b51d24608664fa7a1047f9",
+    "src/ChatHistory.tsx": "bffeb69d80c37193efb6c97d7c9b10c3a4186034cebd9ec45e153116eb68de46",
+    "src/TaskPanel.tsx": "5e0bc67160cd834e304e1bdc25e06fbbf59389f4eb248ac2da89eeb5c32e520f",
+    "src/chat-client.ts": "f086bbdd9f3789db16fbfcdc0e83cc1f2abb2a5bfcb7f5bb9db53893102a8bcc",
+    "src/main.tsx": "6cfd24d4236764ab615df78e984dfac9724080f3020ac5076de0c5980e572677",
+    "tsconfig.json": "451e0ebe2849907b4679f057786e647f71780b3080ece0be9a4cdc603fdbe066"
+  },
+  "passed": true,
+  "turnsExecuted": 15,
+  "persistence": [
+    {
+      "stage": "before-restart",
+      "tasks": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "pid": 64714
+    },
+    {
+      "stage": "after-restart",
+      "tasks": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "pid": 65180
+    }
+  ],
+  "results": [
+    {
+      "input": "记一下准备面试，今天到期，低优先级，工作量大。",
+      "before": [],
+      "passed": true,
+      "reply": "已添加待办：准备面试（未完成 · 优先级低 · 工作量大 · 到期 2026-11-26，#e79ad81e）。",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        }
+      ]
+    },
+    {
+      "input": "给准备面试加个子任务：整理项目介绍，今天到期，高优先级，工作量小。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        }
+      ],
+      "passed": true,
+      "reply": "已添加子任务：整理项目介绍（未完成，#e2c05d43），所属主任务：准备面试（#e79ad81e）。",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ]
+    },
+    {
+      "input": "再加一个子任务：练习自我介绍，今天到期，低优先级，工作量中。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "passed": true,
+      "reply": "已添加子任务：练习自我介绍（未完成，#3cbabadf），所属主任务：准备面试（#e79ad81e）。",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "另记一条检查设备，今天到期，高优先级，工作量小。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        }
+      ],
+      "passed": true,
+      "reply": "已添加待办：检查设备（未完成 · 优先级高 · 工作量小 · 到期 2026-11-26，#51430957）。",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ]
+    },
+    {
+      "input": "按高优先级优先列出全部任务。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "passed": true,
+      "reply": "任务清单：共 4 条，未完成 4 条，已完成 0 条；本次显示 4 条。\n4. ☐ 未完成 · 检查设备 · 优先级高 · 工作量小 · 到期 2026-11-26（#51430957）\n1. ☐ 未完成 · 准备面试 · 优先级低 · 工作量大 · 到期 2026-11-26 · 子任务 0/2 完成（#e79ad81e）\n  2. ☐ 未完成 · 整理项目介绍 · 优先级高 · 工作量小 · 到期 2026-11-26 · 所属：准备面试 #e79ad81e（#e2c05d43）\n  3. ☐ 未完成 · 练习自我介绍 · 优先级低 · 工作量中 · 到期 2026-11-26 · 所属：准备面试 #e79ad81e（#3cbabadf）",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ]
+    },
+    {
+      "input": "今天有哪些任务到期？",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "passed": true,
+      "reply": "2026-11-26 到期的未完成任务：共 4 条。\n1. ☐ 未完成 · 准备面试 · 优先级低 · 工作量大 · 到期 2026-11-26 · 子任务 0/2 完成（#e79ad81e）\n  2. ☐ 未完成 · 整理项目介绍 · 优先级高 · 工作量小 · 到期 2026-11-26 · 所属：准备面试 #e79ad81e（#e2c05d43）\n  3. ☐ 未完成 · 练习自我介绍 · 优先级低 · 工作量中 · 到期 2026-11-26 · 所属：准备面试 #e79ad81e（#3cbabadf）\n4. ☐ 未完成 · 检查设备 · 优先级高 · 工作量小 · 到期 2026-11-26（#51430957）",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ]
+    },
+    {
+      "input": "把整理项目介绍改成中优先级、工作量大。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "passed": true,
+      "reply": "已修改属性：整理项目介绍 · 优先级中 · 工作量大（#e2c05d43）。",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ]
+    },
+    {
+      "input": "准备面试完成了。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "passed": true,
+      "reply": "主任务还有未完成子任务，暂时不能完成。\n  2. ☐ 未完成 · 整理项目介绍 · 优先级中 · 工作量大 · 到期 2026-11-26 · 所属：准备面试 #e79ad81e（#e2c05d43）\n  3. ☐ 未完成 · 练习自我介绍 · 优先级低 · 工作量中 · 到期 2026-11-26 · 所属：准备面试 #e79ad81e（#3cbabadf）",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ]
+    },
+    {
+      "input": "整理项目介绍做完了。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "passed": true,
+      "reply": "已完成：整理项目介绍（#e2c05d43）。",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ]
+    },
+    {
+      "input": "重新列出全部任务。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "passed": true,
+      "reply": "任务清单：共 4 条，未完成 3 条，已完成 1 条；本次显示 4 条。\n1. ☐ 未完成 · 准备面试 · 优先级低 · 工作量大 · 到期 2026-11-26 · 子任务 1/2 完成（#e79ad81e）\n  2. ☑ 已完成 · 整理项目介绍 · 优先级中 · 工作量大 · 到期 2026-11-26 · 所属：准备面试 #e79ad81e（#e2c05d43）\n  3. ☐ 未完成 · 练习自我介绍 · 优先级低 · 工作量中 · 到期 2026-11-26 · 所属：准备面试 #e79ad81e（#3cbabadf）\n4. ☐ 未完成 · 检查设备 · 优先级高 · 工作量小 · 到期 2026-11-26（#51430957）",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ]
+    },
+    {
+      "input": "练习自我介绍做完了。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "passed": true,
+      "reply": "已完成：练习自我介绍（#3cbabadf）。",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ]
+    },
+    {
+      "input": "现在把准备面试标为完成。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "passed": true,
+      "reply": "已完成：准备面试（#e79ad81e）。",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": true,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ]
+    },
+    {
+      "input": "再给准备面试加个子任务：录制视频。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": true,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ],
+      "passed": true,
+      "reply": "已添加子任务：录制视频（未完成，#58488efa），所属主任务：准备面试（#e79ad81e）。主任务已恢复为未完成。",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "58488efa-fc8b-47e4-b770-c7423fd01424",
+          "title": "录制视频",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "删除准备面试。",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "58488efa-fc8b-47e4-b770-c7423fd01424",
+          "title": "录制视频",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ],
+      "passed": true,
+      "reply": "删除确认：（#e79ad81e）“准备面试”有 3 条子任务，是否一并删除？本轮没有修改任务。请回复“确认一并删除 #e79ad81e”。",
+      "after": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "58488efa-fc8b-47e4-b770-c7423fd01424",
+          "title": "录制视频",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "确认一并删除 #e79ad81e",
+      "before": [
+        {
+          "id": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "title": "准备面试",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "large"
+        },
+        {
+          "id": "e2c05d43-94ce-4ec0-be8c-fc57072c6c0b",
+          "title": "整理项目介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "medium",
+          "effort": "large"
+        },
+        {
+          "id": "3cbabadf-44fa-4fbe-82ea-ffaf305edbce",
+          "title": "练习自我介绍",
+          "done": true,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "dueDate": "2026-11-26",
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "58488efa-fc8b-47e4-b770-c7423fd01424",
+          "title": "录制视频",
+          "done": false,
+          "parentId": "e79ad81e-b1d6-4b8c-ab91-0f8942448ccb",
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ],
+      "passed": true,
+      "reply": "已删除：准备面试（#e79ad81e）。已一并删除 3 条子任务。",
+      "after": [
+        {
+          "id": "51430957-46b5-44a6-b445-812c59b9734c",
+          "title": "检查设备",
+          "done": false,
+          "dueDate": "2026-11-26",
+          "priority": "high",
+          "effort": "small"
+        }
+      ]
+    }
+  ]
+}

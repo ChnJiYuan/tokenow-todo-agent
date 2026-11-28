@@ -1,0 +1,457 @@
+{
+  "startedAt": "2026-11-26T09:16:04.775Z",
+  "finishedAt": "2026-11-26T09:16:21.648Z",
+  "model": "deepseek-flash",
+  "sourceHashes": {
+    "server/planner.ts": "0eef5c058a9147da514100b9f8b6241a818c4febe66c86b965e1e3075c599909",
+    "server/agent.ts": "01bcb3e1e7dd6b59b4dfca92298de75c3cabf1c07b481eafe02ae1524dde5718",
+    "shared/tasks.ts": "ceea3543bf7e2f851fae18e6b8d467b636a4f417dc1a2bc31f078dcc92e8f227",
+    "shared/task-view.ts": "131a8f82c071d74d9bfe64cc18de4326b8f98e3129fd7db332388bc5615799d2",
+    "server/task-store.ts": "212816bb5f4feaef9b689f36bb6879deccd5419c6a3ef25638110b7691ee6b92",
+    "scripts/verify-attributes.ts": "b92c93eea839ed0ad806b9169052cc0754ffc0238bb9493c8144acd5bb27a2bd"
+  },
+  "passed": true,
+  "turns": [
+    {
+      "input": "帮我记一下买牛奶。",
+      "passed": true,
+      "reply": "已添加待办：买牛奶（未完成 · 优先级中 · 工作量中，#7ee5d4f0）。",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "记一下准备面试，高优先级，工作量大。",
+      "passed": true,
+      "reply": "已添加待办：准备面试（未完成 · 优先级高 · 工作量大，#0c54bcd5）。",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "large"
+        }
+      ]
+    },
+    {
+      "input": "把准备面试的工作量改成中。",
+      "passed": true,
+      "reply": "已修改属性：准备面试 · 优先级高 · 工作量中（#0c54bcd5）。",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "把买牛奶改成低优先级、工作量小。",
+      "passed": true,
+      "reply": "已修改属性：买牛奶 · 优先级低 · 工作量小（#7ee5d4f0）。",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": false,
+          "priority": "low",
+          "effort": "small"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "列出高优先级且未完成的任务。",
+      "passed": true,
+      "reply": "任务清单：共 2 条，未完成 2 条，已完成 0 条；本次显示 1 条。\n2. ☐ 未完成 · 准备面试 · 优先级高 · 工作量中（#0c54bcd5）",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": false,
+          "priority": "low",
+          "effort": "small"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "有哪些工作量小的任务？",
+      "passed": true,
+      "reply": "任务清单：共 2 条，未完成 2 条，已完成 0 条；本次显示 1 条。\n1. ☐ 未完成 · 买牛奶 · 优先级低 · 工作量小（#7ee5d4f0）",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": false,
+          "priority": "low",
+          "effort": "small"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "牛奶买好了。",
+      "passed": true,
+      "reply": "已完成：买牛奶（#7ee5d4f0）。",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "low",
+          "effort": "small"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "哪些未完成任务工作量小？",
+      "passed": true,
+      "reply": "没有符合这些条件的任务。",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "low",
+          "effort": "small"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "有哪些工作量小的任务？",
+      "passed": true,
+      "reply": "任务清单：共 2 条，未完成 1 条，已完成 1 条；本次显示 1 条。\n1. ☑ 已完成 · 买牛奶 · 优先级低 · 工作量小（#7ee5d4f0）",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "low",
+          "effort": "small"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "把买牛奶的优先级改成最高。",
+      "passed": true,
+      "reply": "已修改属性：买牛奶 · 优先级高 · 工作量小（#7ee5d4f0）。",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "把准备面试的工作量改得差不多。",
+      "passed": true,
+      "reply": "你想把准备面试的工作量改成小、中还是大？",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "记一下写年度报告，这件事很紧急。",
+      "passed": true,
+      "reply": "已添加待办：写年度报告（未完成 · 优先级高 · 工作量中，#4dea8f67）。",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        },
+        {
+          "id": "4dea8f67-b915-4e2c-84d8-d4faa23b385e",
+          "title": "写年度报告",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "把准备面试的优先级改得合适一点。",
+      "passed": true,
+      "reply": "你想把准备面试的优先级改成高、中还是低？",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        },
+        {
+          "id": "4dea8f67-b915-4e2c-84d8-d4faa23b385e",
+          "title": "写年度报告",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "按高优先级优先列出全部任务。",
+      "passed": true,
+      "reply": "任务清单：共 3 条，未完成 2 条，已完成 1 条；本次显示 3 条。\n1. ☑ 已完成 · 买牛奶 · 优先级高 · 工作量小（#7ee5d4f0）\n2. ☐ 未完成 · 准备面试 · 优先级高 · 工作量中（#0c54bcd5）\n3. ☐ 未完成 · 写年度报告 · 优先级高 · 工作量中（#4dea8f67）",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "high",
+          "effort": "small"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        },
+        {
+          "id": "4dea8f67-b915-4e2c-84d8-d4faa23b385e",
+          "title": "写年度报告",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "把第一条的工作量改成大。",
+      "passed": true,
+      "reply": "已修改属性：买牛奶 · 优先级高 · 工作量大（#7ee5d4f0）。",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "high",
+          "effort": "large"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        },
+        {
+          "id": "4dea8f67-b915-4e2c-84d8-d4faa23b385e",
+          "title": "写年度报告",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "再记一条准备面试。",
+      "passed": true,
+      "reply": "已添加待办：准备面试（未完成 · 优先级中 · 工作量中，#cad04d2c）。",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "high",
+          "effort": "large"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        },
+        {
+          "id": "4dea8f67-b915-4e2c-84d8-d4faa23b385e",
+          "title": "写年度报告",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        },
+        {
+          "id": "cad04d2c-e9e8-42b3-b832-e2fc293dbc64",
+          "title": "准备面试",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "把准备面试的优先级改成低。",
+      "passed": true,
+      "reply": "有两个“准备面试”任务，你想改哪一个？",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "high",
+          "effort": "large"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        },
+        {
+          "id": "4dea8f67-b915-4e2c-84d8-d4faa23b385e",
+          "title": "写年度报告",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        },
+        {
+          "id": "cad04d2c-e9e8-42b3-b832-e2fc293dbc64",
+          "title": "准备面试",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    },
+    {
+      "input": "把 #0c54bcd5 的优先级改成低。",
+      "passed": true,
+      "reply": "已修改属性：准备面试 · 优先级低 · 工作量中（#0c54bcd5）。",
+      "tasks": [
+        {
+          "id": "7ee5d4f0-e2ad-440b-9949-d8a82cb6ce61",
+          "title": "买牛奶",
+          "done": true,
+          "priority": "high",
+          "effort": "large"
+        },
+        {
+          "id": "0c54bcd5-4b3e-463e-8ba5-0807faf9888c",
+          "title": "准备面试",
+          "done": false,
+          "priority": "low",
+          "effort": "medium"
+        },
+        {
+          "id": "4dea8f67-b915-4e2c-84d8-d4faa23b385e",
+          "title": "写年度报告",
+          "done": false,
+          "priority": "high",
+          "effort": "medium"
+        },
+        {
+          "id": "cad04d2c-e9e8-42b3-b832-e2fc293dbc64",
+          "title": "准备面试",
+          "done": false,
+          "priority": "medium",
+          "effort": "medium"
+        }
+      ]
+    }
+  ]
+}

@@ -33,6 +33,7 @@ const exerciseModelRequest = `
   };
   assert.deepEqual(await createModelPlanner()({
     messages: [{ role: "user", content: "我有哪些任务？" }], tasks: [],
+    dateContext: { today: "2026-12-31", timeZone: "Australia/Sydney" },
   }), { action: "list", status: "all" });
   assert.equal(calls, 1);
 `;

@@ -12,6 +12,41 @@ import { httpFixture, taskFixture } from "./test-support.ts";
 const user = (content: string): ChatMessage[] => [{ role: "user", content }];
 const listPlan = { action: "list", status: "all" };
 
+for (const action of ["delete", "complete"] as const) {
+  test(`明确不存在的${action}目标：稳定未找到回复，保留原ID、字段及API/磁盘（模型边界mock）`, async (t) => {
+    const { filename, tasks } = await taskFixture(t);
+    tasks.create("买牛奶", "2026-12-31", { priority: "high", effort: "small" });
+    const courier = tasks.create("取快递");
+    tasks.update(courier.id, { done: true });
+    const before = tasks.list();
+    const bytes = await readFile(filename, "utf8");
+    const app = await httpFixture(
+      t,
+      filename,
+      createModelPlanner(async (request) => {
+        assert.match(String(request.messages[0].content), /目标不存在与对象不明确必须区分/);
+        assert.match(String(request.messages.at(-2)?.content), /taskIds:\[\].*不要转为 clarify/);
+        return { content: JSON.stringify({ action, taskIds: [] }), finishReason: "stop" };
+      }),
+    );
+    const response = await app.chat(user(action === "delete" ? "删除交电费那条" : "交电费做完了"));
+    assert.equal(response.status, 200);
+    assert.equal(
+      (await response.json()).reply,
+      "没有找到对应的任务，本轮没有修改任务。请告诉我清单中的任务名称或 #编号。",
+    );
+    const actual = await (await fetch(app.base + "/api/tasks")).json();
+    assert.deepEqual(
+      actual.map((task: { id: string }) => task.id),
+      before.map((task) => task.id),
+      "原ID保持",
+    );
+    assert.deepEqual(actual, before, "所有任务字段保持");
+    assert.deepEqual(actual, JSON.parse(await readFile(filename, "utf8")), "API与磁盘一致");
+    assert.equal(await readFile(filename, "utf8"), bytes, "不重写磁盘");
+  });
+}
+
 test("官方六步连续对话：HTTP → JSON模型边界mock → 执行器 → 磁盘，刷新与重启后保留", async (t) => {
   const { filename } = await taskFixture(t);
   const inputs = [

@@ -7,7 +7,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { setTimeout } from "node:timers/promises";
 
-// 两套真实验收复用生产入口和隔离数据，不占用开发服务的3000端口。
+// 真实验收复用生产入口和隔离数据，不占用开发服务的3000端口。
 export async function createLiveServer() {
   const directory = await mkdtemp(join(tmpdir(), "xiaoming-live-"));
   const filename = join(directory, "tasks.json");
@@ -56,6 +56,9 @@ export async function createLiveServer() {
 
   return {
     filename,
+    get pid() {
+      return child?.pid;
+    },
     get base() {
       return base;
     },

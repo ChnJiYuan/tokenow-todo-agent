@@ -97,6 +97,8 @@ main {
 }
 .task-filters {
   display: flex;
+  flex-wrap: wrap;
+  flex-wrap: wrap;
   gap: 8px;
   margin: 18px 0;
 }
@@ -118,6 +120,40 @@ main {
   padding: 0;
   margin: 0;
 }
+.task-attribute-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  color: #515c71;
+}
+.task-attribute-filters label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.task-attribute-filters select {
+  min-width: 0;
+  border: 1px solid #d8deea;
+  border-radius: 6px;
+  padding: 5px;
+  background: white;
+  font: inherit;
+  color: inherit;
+}
+.task-sort {
+  width: 100%;
+}
+.task-list .task-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.task-priority-high {
+  color: #a42b20;
+  font-weight: 600;
+}
 .task-list li {
   border: 1px solid #e3e6ed;
   border-radius: 12px;
@@ -130,6 +166,26 @@ main {
   margin-top: 7px;
   color: #627086;
   font-size: 12px;
+}
+.task-list li.task-child {
+  margin-left: 22px;
+  border-left: 3px solid #b7c7ff;
+}
+.task-number {
+  color: #627086;
+}
+.task-list .task-progress {
+  color: #103ae1;
+}
+.task-list .task-overdue {
+  color: #95271e;
+  font-weight: 600;
+}
+.task-date-context {
+  margin-top: 7px;
+  color: #627086;
+  font-size: 12px;
+  line-height: 1.6;
 }
 .task-done .task-title {
   text-decoration: line-through;

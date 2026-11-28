@@ -1,0 +1,38 @@
+{
+  "submitSha256": "64b5607352e23647513cb979405facbd0e204d1b6ccec113ec20267d746d0320",
+  "submitUnchanged": true,
+  "initialTrackedDiffPaths": [
+    ".env.example",
+    "README.md",
+    "SUBMIT.md",
+    "docs/ENGINEERING.md",
+    "docs/VERIFICATION.md",
+    "package.json",
+    "public/style.css",
+    "scripts/dialogue-cases.ts",
+    "server/agent.ts",
+    "server/app.test.ts",
+    "server/app.ts",
+    "server/index.ts",
+    "server/model.test.ts",
+    "server/openapi.yaml",
+    "server/planner.test.ts",
+    "server/planner.ts",
+    "server/task-store.test.ts",
+    "server/task-store.ts",
+    "server/tasks.ts",
+    "server/test-support.ts",
+    "shared/tasks.ts",
+    "src/TaskPanel.tsx"
+  ],
+  "intentionallyExtendedTrackedDiffs": [
+    "README.md",
+    "docs/ENGINEERING.md",
+    "docs/VERIFICATION.md",
+    "package.json",
+    "server/openapi.yaml",
+    "server/planner.ts"
+  ],
+  "otherInitialTrackedDiffsByteIdentical": true,
+  "note": "本轮接续修改既有未跟踪属性脚本、日期脚本、属性测试和属性文档；其余既有未跟踪模块保留。初始完整diff另保留于本地临时文件，不作为复现依赖。"
+}

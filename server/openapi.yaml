@@ -35,7 +35,7 @@ paths:
                       content: { type: string, minLength: 1 }
       responses:
         "200":
-          description: 本轮中文回复，包括澄清、执行结果或可理解的模型/存储错误反馈
+          description: 本轮中文回复，包括澄清、执行结果或模型/存储错误。明确删除或完成的目标不存在时，回复“没有找到对应的任务，本轮没有修改任务。请告诉我清单中的任务名称或 #编号。”，不选择无关任务、不写文件；对象或操作不明确时仍澄清。
           content:
             application/json:
               schema:
@@ -56,18 +56,50 @@ paths:
   /api/tasks:
     get:
       operationId: listTasks
-      summary: 按创建顺序列出全部任务，包括已完成任务
+      summary: 列出任务，支持主任务、状态、日期、属性筛选与优先级排序
+      description: 日期筛选仅匹配当天，不包含逾期或无日期任务。指定 dueDate 时默认只查未完成，status=all 显式包含已完成。未知参数被拒绝。
+      parameters:
+        - name: parentId
+          in: query
+          description: 精确筛选此主任务的一级子任务；关系按稳定 ID 而非标题建立，可与状态、日期、属性组合。
+          schema: { $ref: "#/components/schemas/TaskId" }
+        - name: dueDate
+          in: query
+          schema: { $ref: "#/components/schemas/DueDate" }
+        - name: status
+          in: query
+          description: 无日期筛选时默认 all，有日期筛选时默认 pending。
+          schema: { type: string, enum: [all, pending, done] }
+        - name: priority
+          in: query
+          schema: { $ref: "#/components/schemas/Priority" }
+        - name: effort
+          in: query
+          schema: { $ref: "#/components/schemas/Effort" }
+        - name: sort
+          in: query
+          description: REST 数组默认按存储创建顺序平铺；priority 对数组按高、中、低全局稳定排序，不附带展示编号。聊天和面板另按主任务之间、同父子任务之间排序并保持父子相邻，筛选与排序保留全局展示编号及真实ID；不得用REST数组下标代替聊天编号。
+          schema: { type: string, enum: [created, priority], default: created }
       responses:
         "200":
           description: 任务列表；空列表为 []
+          headers:
+            X-Task-Today:
+              description: 服务端按 TASK_TIME_ZONE 得到的当前日期，用于面板今日筛选和逾期判断。
+              schema: { $ref: "#/components/schemas/DueDate" }
+            X-Task-Time-Zone:
+              description: 服务端任务时区，默认 Australia/Sydney。
+              schema: { type: string, example: Australia/Sydney }
           content:
             application/json:
               schema:
                 type: array
                 items: { $ref: "#/components/schemas/Task" }
+        "400": { $ref: "#/components/responses/BadRequest" }
     post:
       operationId: createTask
-      summary: 创建一条未完成任务
+      summary: 创建一条未完成主任务或一级子任务
+      description: parentId 必须指向已存在的主任务，不能指向子任务。为已完成主任务新增子任务时，同一次原子保存将主任务恢复为未完成。子任务不继承父任务的日期或属性。
       requestBody:
         required: true
         content:
@@ -78,6 +110,14 @@ paths:
               required: [title]
               properties:
                 title: { $ref: "#/components/schemas/Title" }
+                parentId: { $ref: "#/components/schemas/TaskId" }
+                dueDate: { $ref: "#/components/schemas/DueDate" }
+                priority:
+                  allOf: [{ $ref: "#/components/schemas/Priority" }]
+                  default: medium
+                effort:
+                  allOf: [{ $ref: "#/components/schemas/Effort" }]
+                  default: medium
       responses:
         "201":
           description: 新建的任务
@@ -93,7 +133,8 @@ paths:
         schema: { type: string }
     patch:
       operationId: updateTask
-      summary: 修改标题或完成状态
+      summary: 修改任务字段，包括设置或清除到期日期
+      description: 仅更新提供的字段。priority 和 effort 可一次写入共同修改。父任务有未完成子任务时拒绝 done=true 并返回待处理子任务；全部子任务完成后也不会自动完成父任务。重新关联或恢复未完成子任务会在同一次保存中恢复父任务。服务端禁止缺失父任务、自引用、循环及超过一级的关系。
       requestBody:
         required: true
         content:
@@ -105,6 +146,18 @@ paths:
               properties:
                 title: { $ref: "#/components/schemas/Title" }
                 done: { type: boolean }
+                parentId:
+                  description: 已存在的主任务 ID；null 解除父子关系，省略保留。已有子任务的主任务不能改为子任务。
+                  oneOf:
+                    - { $ref: "#/components/schemas/TaskId" }
+                    - { type: "null" }
+                priority: { $ref: "#/components/schemas/Priority" }
+                effort: { $ref: "#/components/schemas/Effort" }
+                dueDate:
+                  description: 真实日期表示设置或修改，null 表示清除并移除持久化字段，省略则保留。
+                  oneOf:
+                    - { $ref: "#/components/schemas/DueDate" }
+                    - { type: "null" }
       responses:
         "200":
           description: 更新后的任务
@@ -113,15 +166,41 @@ paths:
               schema: { $ref: "#/components/schemas/Task" }
         "400": { $ref: "#/components/responses/BadRequest" }
         "404": { $ref: "#/components/responses/NotFound" }
+        "409": { $ref: "#/components/responses/TaskConflict" }
     delete:
       operationId: deleteTask
-      summary: 删除一条任务
+      summary: 删除任务；主任务有子任务时需显式选择级联
+      parameters:
+        - name: cascade
+          in: query
+          description: 仅字面 true 表示明确同意连同全部子任务（含已完成）删除。默认 false，有子任务则返回409且不写入。级联删除只保存一次文件。删除子任务不删除主任务。
+          schema: { type: boolean, default: false }
       responses:
         "204":
           description: 删除成功，响应体为空
         "404": { $ref: "#/components/responses/NotFound" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "409": { $ref: "#/components/responses/TaskConflict" }
 components:
   schemas:
+    TaskId:
+      type: string
+      minLength: 1
+      description: 稳定的完整任务 ID；新任务使用 UUID，兼容旧数据的非 UUID ID。API 不接受聊天短 ID 作为关联。
+    Priority:
+      type: string
+      enum: [high, medium, low]
+      description: 高、中、低。创建时省略或旧任务缺失时按中处理；PATCH 省略时不改变，查询省略时不筛选。
+    Effort:
+      type: string
+      enum: [small, medium, large]
+      description: 小、中、大；用户指定的粗略估计，不代表固定工时。创建时省略或旧任务缺失时按中处理；PATCH 省略时不改变，查询省略时不筛选。
+    DueDate:
+      type: string
+      format: date
+      pattern: '^\d{4}-\d{2}-\d{2}$'
+      description: 0001-01-01 至 9999-12-31 的真实公历日期；拒绝非法月日、非闰年2月29日和时间戳。不含时间或通知语义。
+      example: "2026-12-31"
     Title:
       type: string
       description: 首尾空白会自动去除，去除后长度应为 1 至 200
@@ -129,17 +208,33 @@ components:
       maxLength: 200
     Task:
       type: object
-      required: [id, title, done]
+      required: [id, title, done, priority, effort]
+      additionalProperties: true
+      description: 无 parentId 的旧任务视为主任务，无需迁移。旧任务可省略 dueDate；未知扩展字段读写保留。
       properties:
-        id: { type: string, format: uuid }
+        id: { $ref: "#/components/schemas/TaskId" }
+        parentId: { $ref: "#/components/schemas/TaskId" }
         title: { $ref: "#/components/schemas/Title" }
         done: { type: boolean }
+        priority: { $ref: "#/components/schemas/Priority" }
+        effort: { $ref: "#/components/schemas/Effort" }
+        dueDate: { $ref: "#/components/schemas/DueDate" }
     Error:
       type: object
       required: [error]
       properties:
         error: { type: string }
+        code: { type: string, enum: [invalid_parent, pending_children, has_children] }
+        tasks:
+          type: array
+          description: 规则冲突涉及的子任务；pending_children 仅列未完成项，has_children 列全部子任务。
+          items: { $ref: "#/components/schemas/Task" }
   responses:
+    TaskConflict:
+      description: 父任务尚有未完成子任务，或删除主任务前尚未明确确认级联。文件未修改。
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
     BadRequest:
       description: 请求字段无效
       content:

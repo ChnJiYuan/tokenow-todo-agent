@@ -17,6 +17,10 @@ export function classifyReply(reply: string): ReplyKind {
     return "listed";
   if (reply.startsWith("我可以帮你创建")) return "help";
   if (
+    /^(?:这个)?任务标题超过\s*200(?:字|个字符)[，,。]请提供一个简短的任务标题[。！!]?$/u.test(reply)
+  )
+    return "clarify";
+  if (
     /[？?]|请.*(?:重新|指定|告诉|确认|明确|缩短|补充|分开|拆分|选择)|哪|是否|什么|几条/.test(reply)
   )
     return "clarify";

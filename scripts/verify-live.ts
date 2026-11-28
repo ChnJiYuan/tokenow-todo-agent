@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import type { ChatMessage } from "../shared/chat.ts";
 import { taskListSchema } from "../shared/tasks.ts";
 import { model } from "../server/model.ts";
+import { sourceHashes, writeReport } from "./verification-support.ts";
 import { createLiveServer } from "./live-server.ts";
 
 if (!process.env.DEEPSEEK_API_KEY?.trim()) {
@@ -16,6 +17,12 @@ console.log(`真实模型验收配置：${model}，reasoning_effort=none（非�
 
 const server = await createLiveServer();
 let history: ChatMessage[] = [];
+const startedAt = new Date().toISOString();
+const hashes = await sourceHashes();
+const results: { input: string; reply: string; passed: boolean }[] = [];
+const states: unknown[] = [];
+const ids = new Map<string, string>();
+let failure: unknown;
 
 async function chat(content: string, expectedReply: RegExp) {
   history.push({ role: "user", content });
@@ -27,7 +34,10 @@ async function chat(content: string, expectedReply: RegExp) {
   });
   assert.equal(response.status, 200);
   const body: { reply: string } = await response.json();
+  const result = { input: content, reply: body.reply, passed: false };
+  results.push(result);
   assert.match(body.reply, expectedReply);
+  result.passed = true;
   history.push({ role: "assistant", content: body.reply });
   console.log(`✓ ${content}\n  ${body.reply}`);
 }
@@ -42,6 +52,12 @@ async function state(expected: { title: string; done: boolean }[]) {
   );
   const disk = taskListSchema.parse(JSON.parse(await readFile(server.filename, "utf8")));
   assert.deepEqual(tasks, disk);
+  for (const task of tasks) {
+    const previous = ids.get(task.title);
+    if (previous) assert.equal(task.id, previous, "原ID保持");
+    else ids.set(task.title, task.id);
+  }
+  states.push(tasks);
 }
 
 try {
@@ -83,6 +99,23 @@ try {
   console.log(
     "真实模型验收通过：官方六步、空历史、进程重启、洗衣服语义变化和最近任务指代。共12轮对话，每轮最多2次规划请求。",
   );
+} catch (error) {
+  failure = error;
 } finally {
   await server.dispose();
+  await writeReport(process.env.LIVE_REPORT || "reports/official-live-latest.json", {
+    startedAt,
+    finishedAt: new Date().toISOString(),
+    realModel: true,
+    model,
+    nodeVersion: process.version,
+    sourceHashes: hashes,
+    passed: !failure,
+    error: failure instanceof Error ? failure.message : failure ? String(failure) : undefined,
+    turnsExecuted: results.length,
+    results,
+    states,
+  });
 }
+
+if (failure) throw failure;

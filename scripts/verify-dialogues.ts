@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import type { ChatMessage } from "../shared/chat.ts";
@@ -7,6 +6,7 @@ import { taskListSchema, taskSchema, type Task } from "../shared/tasks.ts";
 import { model } from "../server/model.ts";
 import { dialogueCases, type FixtureTask, type ReplyKind } from "./dialogue-cases.ts";
 import { createLiveServer } from "./live-server.ts";
+import { sourceHashes as hashSources } from "./verification-support.ts";
 import { classifyReply } from "./dialogue-checks.ts";
 
 if (!process.env.DEEPSEEK_API_KEY?.trim()) {
@@ -79,6 +79,8 @@ interface TurnResult {
   reply: string;
   kind: ReplyKind;
   expectedKinds: ReplyKind[];
+  beforeTasks: Task[];
+  actualTasks: Task[];
   before: FixtureTask[];
   expected: FixtureTask[];
   actual: FixtureTask[];
@@ -99,22 +101,7 @@ const results: {
   skippedTurns: number;
 }[] = [];
 const startedAt = new Date().toISOString();
-const sourceHashes = Object.fromEntries(
-  await Promise.all(
-    [
-      "server/planner.ts",
-      "server/agent.ts",
-      "scripts/dialogue-cases.ts",
-      "scripts/dialogue-checks.ts",
-      "scripts/verify-dialogues.ts",
-    ].map(async (file) => [
-      file,
-      createHash("sha256")
-        .update(await readFile(file))
-        .digest("hex"),
-    ]),
-  ),
-);
+const sourceHashes = await hashSources();
 let infrastructureError: string | undefined;
 try {
   await server.start();
@@ -175,6 +162,8 @@ try {
           reply: body.reply,
           kind,
           expectedKinds: turn.kinds,
+          beforeTasks: before,
+          actualTasks: actual,
           before: logical(before, ids),
           expected: turn.expected,
           actual: logical(actual, ids),
@@ -249,6 +238,7 @@ try {
         model,
         reasoningEffort: "none",
         realModel: true,
+        nodeVersion: process.version,
         sourceHashes,
         infrastructureError,
         summary,

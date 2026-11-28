@@ -4,13 +4,15 @@ import { chatRequestSchema, type ChatMessage } from "../shared/chat.ts";
 import type { TaskStore } from "./task-store.ts";
 import { taskRouter } from "./tasks.ts";
 import { ChatRequestError, createChatCache } from "./chat-cache.ts";
+import { type TaskClock } from "./task-clock.ts";
 
 interface AppDependencies {
   reply(messages: ChatMessage[]): Promise<string>;
   tasks: TaskStore;
+  clock?: TaskClock;
 }
 
-export function createApp({ reply, tasks }: AppDependencies) {
+export function createApp({ reply, tasks, clock }: AppDependencies) {
   const app = express();
   const cachedReply = createChatCache(reply);
   app.use(express.json({ limit: "1mb" }));
@@ -28,7 +30,7 @@ export function createApp({ reply, tasks }: AppDependencies) {
     res.json({ reply: answer });
   });
 
-  app.use("/api/tasks", taskRouter(tasks));
+  app.use("/api/tasks", taskRouter(tasks, clock));
   app.use("/api", (_req, res) => res.status(404).json({ error: "接口不存在。" }));
   app.use(handleApiError);
 

@@ -1,0 +1,639 @@
+{
+  "suggestedMessage": "feat: finish task extensions and align missing-target contract",
+  "notStagedOrCommitted": true,
+  "excludedForOwnerReview": ["SUBMIT.md"],
+  "files": [
+    {
+      "path": ".env.example",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "README.md",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "SUBMIT.md",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": false
+    },
+    {
+      "path": "docs/DIALOGUE_TESTS.md",
+      "status": " M",
+      "existing": false,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "docs/ENGINEERING.md",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "docs/VERIFICATION.md",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "package.json",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "public/style.css",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/dialogue-cases.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/dialogue-checks.ts",
+      "status": " M",
+      "existing": false,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/live-server.ts",
+      "status": " M",
+      "existing": false,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/verify-dialogues.ts",
+      "status": " M",
+      "existing": false,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/verify-live.ts",
+      "status": " M",
+      "existing": false,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/agent.test.ts",
+      "status": " M",
+      "existing": false,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/agent.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/app.test.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/app.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/dialogue-checks.test.ts",
+      "status": " M",
+      "existing": false,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/index.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/model.test.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/openapi.yaml",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/planner.test.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/planner.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/task-store.test.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/task-store.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/tasks.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/test-support.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "shared/tasks.ts",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "src/TaskPanel.tsx",
+      "status": " M",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "docs/ATTRIBUTES_VERIFICATION.md",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "docs/DEMO.md",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/attributes-live-latest.json",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/attributes-attempt1.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/attributes-final.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/attributes-live.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/browser-mock-fixture.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/browser-observations.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/checks-attempt1.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/checks.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/demo-attempt1.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/demo-final.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/demo-final.json.progress.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/demo-live.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/demo-live.json.progress.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/dialogues-after.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/dialogues-final.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/dialogues-verified.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/due-dates-accepted.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/due-dates-attempt1.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/due-dates-final.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/due-dates-live.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/due-dates-verified.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/evidence-index.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/missing-target-after.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/missing-target-before.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/missing-target-final.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/missing-target-verified.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/official-final.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/official-live.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/preservation.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/rest-contract.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/completion/submission-files.json",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "reports/due-dates-live-latest.json",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/date-checks.ts",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/preview-demo.ts",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/verification-support.ts",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/verify-attributes.ts",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/verify-checks.ts",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/verify-demo.ts",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "scripts/verify-due-dates.ts",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/attributes.test.ts",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": true,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/date-checks.test.ts",
+      "status": "??",
+      "existing": false,
+      "modifiedThisRun": false,
+      "addedThisRun": true,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/dates.test.ts",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/due-date.test.ts",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/subtasks.test.ts",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/task-clock.ts",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "server/task-rules.ts",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "shared/dates.ts",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    },
+    {
+      "path": "shared/task-view.ts",
+      "status": "??",
+      "existing": true,
+      "modifiedThisRun": false,
+      "addedThisRun": false,
+      "includeInSuggestedCommit": true
+    }
+  ]
+}

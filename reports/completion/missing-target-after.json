@@ -1,0 +1,198 @@
+{
+  "startedAt": "2026-11-26T09:54:55.674Z",
+  "finishedAt": "2026-11-26T09:54:58.325Z",
+  "model": "deepseek-flash",
+  "reasoningEffort": "none",
+  "realModel": true,
+  "sourceHashes": {
+    "server/planner.ts": "a109516ef75c68895f7ba1665351a3783f903bc2411c38638fd705597f88dc8f",
+    "server/agent.ts": "324b15849bfed50d59379bd0211898280a4e58588a6a59c1b24467560bcc87dd",
+    "scripts/dialogue-cases.ts": "16de3ae8ddda4c770a98e7781390c2eb80f807d47b7598d9d62a4e70df58ffb6",
+    "scripts/dialogue-checks.ts": "3e9933a381c8a3076773a5b2586e31bb905a3420caab18a0f9755b553eda8817",
+    "scripts/verify-dialogues.ts": "cbe2676082223955e2cf048b4e02cc562eb832037cbc729a64505c40cc27eb14"
+  },
+  "summary": {
+    "scenariosPlanned": 3,
+    "scenariosExecuted": 3,
+    "scenariosCompleted": 3,
+    "passed": 3,
+    "failed": 0,
+    "turnsExecuted": 3,
+    "skippedTurns": 0,
+    "wrongMutations": 0,
+    "modelErrors": 0
+  },
+  "results": [
+    {
+      "id": "missing-target",
+      "category": "重复与不存在",
+      "rationale": "不存在的目标不能近似匹配到无关任务。",
+      "repeat": 1,
+      "turnsPlanned": 1,
+      "passed": true,
+      "turns": [
+        {
+          "input": "删除交电费那条",
+          "reply": "没有找到对应的任务，本轮没有修改任务。请告诉我清单中的任务名称或 #编号。",
+          "kind": "not_found",
+          "expectedKinds": ["not_found"],
+          "before": [
+            {
+              "key": "milk",
+              "title": "买牛奶",
+              "done": false
+            },
+            {
+              "key": "courier",
+              "title": "取快递",
+              "done": false
+            }
+          ],
+          "expected": [
+            {
+              "key": "milk",
+              "title": "买牛奶",
+              "done": false
+            },
+            {
+              "key": "courier",
+              "title": "取快递",
+              "done": false
+            }
+          ],
+          "actual": [
+            {
+              "key": "milk",
+              "title": "买牛奶",
+              "done": false
+            },
+            {
+              "key": "courier",
+              "title": "取快递",
+              "done": false
+            }
+          ],
+          "durationMs": 1020,
+          "passed": true,
+          "statePassed": true,
+          "wrongMutation": false
+        }
+      ],
+      "skippedTurns": 0
+    },
+    {
+      "id": "missing-target",
+      "category": "重复与不存在",
+      "rationale": "不存在的目标不能近似匹配到无关任务。",
+      "repeat": 2,
+      "turnsPlanned": 1,
+      "passed": true,
+      "turns": [
+        {
+          "input": "删除交电费那条",
+          "reply": "没有找到对应的任务，本轮没有修改任务。请告诉我清单中的任务名称或 #编号。",
+          "kind": "not_found",
+          "expectedKinds": ["not_found"],
+          "before": [
+            {
+              "key": "milk",
+              "title": "买牛奶",
+              "done": false
+            },
+            {
+              "key": "courier",
+              "title": "取快递",
+              "done": false
+            }
+          ],
+          "expected": [
+            {
+              "key": "milk",
+              "title": "买牛奶",
+              "done": false
+            },
+            {
+              "key": "courier",
+              "title": "取快递",
+              "done": false
+            }
+          ],
+          "actual": [
+            {
+              "key": "milk",
+              "title": "买牛奶",
+              "done": false
+            },
+            {
+              "key": "courier",
+              "title": "取快递",
+              "done": false
+            }
+          ],
+          "durationMs": 601,
+          "passed": true,
+          "statePassed": true,
+          "wrongMutation": false
+        }
+      ],
+      "skippedTurns": 0
+    },
+    {
+      "id": "missing-target",
+      "category": "重复与不存在",
+      "rationale": "不存在的目标不能近似匹配到无关任务。",
+      "repeat": 3,
+      "turnsPlanned": 1,
+      "passed": true,
+      "turns": [
+        {
+          "input": "删除交电费那条",
+          "reply": "没有找到对应的任务，本轮没有修改任务。请告诉我清单中的任务名称或 #编号。",
+          "kind": "not_found",
+          "expectedKinds": ["not_found"],
+          "before": [
+            {
+              "key": "milk",
+              "title": "买牛奶",
+              "done": false
+            },
+            {
+              "key": "courier",
+              "title": "取快递",
+              "done": false
+            }
+          ],
+          "expected": [
+            {
+              "key": "milk",
+              "title": "买牛奶",
+              "done": false
+            },
+            {
+              "key": "courier",
+              "title": "取快递",
+              "done": false
+            }
+          ],
+          "actual": [
+            {
+              "key": "milk",
+              "title": "买牛奶",
+              "done": false
+            },
+            {
+              "key": "courier",
+              "title": "取快递",
+              "done": false
+            }
+          ],
+          "durationMs": 765,
+          "passed": true,
+          "statePassed": true,
+          "wrongMutation": false
+        }
+      ],
+      "skippedTurns": 0
+    }
+  ]
+}

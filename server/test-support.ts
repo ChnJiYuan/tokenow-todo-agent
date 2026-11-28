@@ -9,6 +9,7 @@ import { createApp } from "./app.ts";
 import { createAgent } from "./agent.ts";
 import type { Planner } from "./planner.ts";
 import { createJsonTaskStore } from "./task-store.ts";
+import type { TaskClock } from "./task-clock.ts";
 
 export async function taskFixture(t: TestContext) {
   const directory = await mkdtemp(join(tmpdir(), "xiaoming-test-"));
@@ -17,9 +18,14 @@ export async function taskFixture(t: TestContext) {
   return { filename, tasks: createJsonTaskStore(filename) };
 }
 
-export async function httpFixture(t: TestContext, filename: string, planner: Planner) {
+export async function httpFixture(
+  t: TestContext,
+  filename: string,
+  planner: Planner,
+  clock?: TaskClock,
+) {
   const tasks = createJsonTaskStore(filename);
-  const server = createApp({ tasks, reply: createAgent({ tasks, planner }) }).listen(
+  const server = createApp({ tasks, clock, reply: createAgent({ tasks, planner, clock }) }).listen(
     0,
     "127.0.0.1",
   );

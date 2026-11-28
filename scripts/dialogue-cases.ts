@@ -500,8 +500,8 @@ export const dialogueCases: DialogueCase[] = [
   preserve(
     "priority-request",
     "参数与能力边界",
-    "把买牛奶的优先级改成最高。",
-    "未实现的优先级字段不应映射为完成或创建。",
+    "把买牛奶的优先级改得合适一点。",
+    "不确定优先级取值时应澄清，不能自行推断为高、中或低。",
   ),
   {
     id: "literal-command-title",

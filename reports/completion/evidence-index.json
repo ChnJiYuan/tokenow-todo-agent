@@ -1,0 +1,128 @@
+{
+  "date": "2026-11-26",
+  "nodeVersion": "v25.9.0",
+  "coreSourceHashes": {
+    "package-lock.json": "d9874f679b02a03320bf70ad18f5f0a58c1ff9b5ea4f15e020254517ecda4aba",
+    "public/index.html": "d2b5345fd41e9cdb1447667f1ea5ba60931e7ebf0a437bfdf0f96c57710e14b6",
+    "public/style.css": "ba739d4302de01027f7c1ae2808c38b33f87d47dee7c9832c4ec0749ceceeeb1",
+    "server/agent.ts": "324b15849bfed50d59379bd0211898280a4e58588a6a59c1b24467560bcc87dd",
+    "server/app.ts": "e4e8dca3890fed950238e95e88311afd1ba338948602385a64015aa6dd243a9a",
+    "server/chat-cache.ts": "ba9b994f148ceb55da6f91e82ce4a10c7b5607ed75327f4d3cc173b1acb4d6b5",
+    "server/index.ts": "244fbd7841833871789cdf8d1a45c1dc808b7c268d070672546f6d168fd427f1",
+    "server/model.ts": "037cd90106fe213c48b0bbc1633c55022c2f5816f3d9534541984e7dabce9352",
+    "server/planner.ts": "854f27bce99285c05ebf35252aca1f45f959ce8669e73a57fd93533b52fa0cf8",
+    "server/task-clock.ts": "fb807c30a4828abe8def472dcd1947ef53ab254ca04c5a1be0215c508727ded2",
+    "server/task-rules.ts": "162a1e1497600c524ca11e2fbda6cd17323e307176328b0e93ba18e46a718b32",
+    "server/task-store.ts": "212816bb5f4feaef9b689f36bb6879deccd5419c6a3ef25638110b7691ee6b92",
+    "server/tasks.ts": "b2b60ae64871fdff3b93a57ddbbcfb8054d65213ca374e444cc1c181a3a6a7a8",
+    "shared/chat.ts": "471993fcdf6b6c00a3e2bac024dfbe5c4ae5b98c41ce25eaa042e3b91819f159",
+    "shared/dates.ts": "b74df16b07b32becaeca00fbb65ce0cf407bd68ae114707009b25f1057a2d032",
+    "shared/task-view.ts": "5e4a3328a9063d661879e333adec50eea9dede11b530c2168d1a512a837a1c0d",
+    "shared/tasks.ts": "ceea3543bf7e2f851fae18e6b8d467b636a4f417dc1a2bc31f078dcc92e8f227",
+    "src/App.tsx": "da5df9e157d40e7a7cf465235b131213eba3b50fd5b51d24608664fa7a1047f9",
+    "src/ChatHistory.tsx": "bffeb69d80c37193efb6c97d7c9b10c3a4186034cebd9ec45e153116eb68de46",
+    "src/TaskPanel.tsx": "5e0bc67160cd834e304e1bdc25e06fbbf59389f4eb248ac2da89eeb5c32e520f",
+    "src/chat-client.ts": "f086bbdd9f3789db16fbfcdc0e83cc1f2abb2a5bfcb7f5bb9db53893102a8bcc",
+    "src/main.tsx": "6cfd24d4236764ab615df78e984dfac9724080f3020ac5076de0c5980e572677"
+  },
+  "latest": {
+    "missingTarget": {
+      "report": "missing-target-verified.json",
+      "sha256": "a6a14b409d023ba09506eed502d4fad5518cfe66d96b4ea34e93e656e8cb61c5",
+      "coreImplementationMatchesCurrent": true,
+      "startedAt": "2026-11-26T10:01:12.717Z",
+      "finishedAt": "2026-11-26T10:01:16.003Z",
+      "passed": true,
+      "summary": {
+        "scenariosPlanned": 3,
+        "scenariosExecuted": 3,
+        "scenariosCompleted": 3,
+        "passed": 3,
+        "failed": 0,
+        "turnsExecuted": 3,
+        "skippedTurns": 0,
+        "wrongMutations": 0,
+        "modelErrors": 0
+      }
+    },
+    "dialogues": {
+      "report": "dialogues-verified.json",
+      "sha256": "12705425be4c0b8cbf3f619a6277476ed95f3455ad17c306d69380f137faef4b",
+      "coreImplementationMatchesCurrent": true,
+      "startedAt": "2026-11-26T10:01:41.163Z",
+      "finishedAt": "2026-11-26T10:02:44.629Z",
+      "passed": true,
+      "summary": {
+        "scenariosPlanned": 54,
+        "scenariosExecuted": 54,
+        "scenariosCompleted": 54,
+        "passed": 54,
+        "failed": 0,
+        "turnsExecuted": 65,
+        "skippedTurns": 0,
+        "wrongMutations": 0,
+        "modelErrors": 0
+      }
+    },
+    "official": {
+      "report": "official-final.json",
+      "sha256": "b1fcde88b9faffa26ee14d651b26023f1afe1c575243b0cf70c59ae333ac7ece",
+      "coreImplementationMatchesCurrent": true,
+      "startedAt": "2026-11-26T09:58:55.167Z",
+      "finishedAt": "2026-11-26T09:59:06.311Z",
+      "passed": true,
+      "summary": {
+        "turns": 12
+      }
+    },
+    "attributes": {
+      "report": "attributes-final.json",
+      "sha256": "1f54eefb57873d49cc177eaccab3f3cdca32fd911b1b5f350c099fe6578edbf6",
+      "coreImplementationMatchesCurrent": true,
+      "startedAt": "2026-11-26T09:58:40.773Z",
+      "finishedAt": "2026-11-26T09:58:57.099Z",
+      "passed": true,
+      "summary": {
+        "turns": 18
+      }
+    },
+    "dates": {
+      "report": "due-dates-accepted.json",
+      "sha256": "0bc091afee60f3d8a5567604ed4080eec6c07cfefc6533a2c143639d6c01b9b8",
+      "coreImplementationMatchesCurrent": true,
+      "startedAt": "2026-11-26T10:01:41.197Z",
+      "finishedAt": "2026-11-26T10:01:50.660Z",
+      "passed": true,
+      "summary": {
+        "turns": 9
+      }
+    },
+    "demo": {
+      "report": "demo-final.json",
+      "sha256": "7e86dd61a0db9783d038cc6d15b1cb82f69c568cc66146b46c514950e4102929",
+      "coreImplementationMatchesCurrent": true,
+      "startedAt": "2026-11-26T09:58:47.820Z",
+      "finishedAt": "2026-11-26T10:01:06.386Z",
+      "passed": true,
+      "summary": {
+        "turns": 15
+      }
+    },
+    "checks": {
+      "report": "checks.json",
+      "sha256": "d35602e72a1a7ecb91850f0374321a87550d187d283c24af9f1db77b8063369a",
+      "coreImplementationMatchesCurrent": true,
+      "startedAt": "2026-11-26T10:03:48.266Z",
+      "finishedAt": "2026-11-26T10:03:49.615Z",
+      "passed": true,
+      "summary": {
+        "turns": 0
+      }
+    }
+  },
+  "notes": [
+    "每个报告的sourceHashes是运行时的完整采样；此处比较生产TypeScript、前端及锁文件，未将后续文档/验收辅助脚本变化冒充业务实现变化。",
+    "保留所有修复前、中间失败及成功报告，最新使用latest映射。",
+    "浏览器真实数据、mock和REST记录独立于真实模型对话；见browser-observations.json与rest-contract.json。"
+  ]
+}
